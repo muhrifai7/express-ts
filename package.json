@@ -1,19 +1,31 @@
 {
   "name": "hris-backend",
   "version": "1.0.0",
-  "main": "src/index.ts",
-  "repository": "https://github.com/mkosir/express-typescript-typeorm-boilerplate.git",
-  "author": "mrfi7 <muh.rifai@megafinance.co.id>",
+  "repository": "",
+  "author": "mrfi7 <muhrifai554@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./src/index.ts"
-},
+    "dev": "nodemon --watch src -e ts --exec ts-node -r dotenv/config src/index.ts",
+    "build": "rm -rf dist && tsc",
+    "start": "node dist/index.js",
+    "prettier": "prettier --config .prettierrc --write './**/*.{ts,js,css,scss,json,md}'"
+  },
   "dependencies": {
-    "express": "^4.17.1"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.7.1",
+    "typeorm": "^0.2.41",
+    "typeorm-naming-strategies": "^2.0.0",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.6",
     "@types/node": "^16.11.11",
+    "@types/validator": "^13.7.0",
     "nodemon": "^2.0.15",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2"

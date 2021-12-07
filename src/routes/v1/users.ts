@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
 import { list } from "../../controllers/users";
-// import { checkJwt } from 'middleware/checkJwt';
-// import { checkRole } from 'middleware/checkRole';
-// import { validatorEdit } from 'middleware/validation/users';
+import { checkJwt } from 'middleware/checkJwt';
+import { checkRole } from 'middleware/checkRole';
+import { validatorEdit } from 'middleware/validation/users';
 
 const router = Router();
 
