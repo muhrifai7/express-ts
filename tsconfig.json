@@ -18,7 +18,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules", "src/*"]
+      "*": ["*", "src/*"],
     },
     "plugins": [
       { "transform": "typescript-transform-paths", "exclude": [ "**/node_modules/**" ] }
