@@ -1,3 +1,4 @@
+import { Response } from 'express';
 import { Language } from 'typeorm/entities/users/types';
 
 import { JwtPayload } from '../JwtPayload';
@@ -9,7 +10,7 @@ declare global {
       language: Language;
     }
     export interface Response {
-      customSuccess(httpStatusCode: number, message: string, data?: any): Response;
+      customSuccess: ((httpStatusCode: number, message: string, data?: any) => Response);
     }
   }
 }

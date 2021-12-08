@@ -1,17 +1,17 @@
 import { Request, Response, NextFunction } from 'express';
 import validator from 'validator';
 
-import { ConstsUser } from 'consts/ConstsUser';
-import { CustomError } from 'utils/response/custom-error/CustomError';
-import { ErrorValidation } from 'utils/response/custom-error/types';
+import { ConstsUser } from '../../../consts/ConstsUser';
+import { CustomError } from '../../../utils/response/custom-error/CustomError';
+import { ErrorValidation } from '../../../utils/response/custom-error/types';
 
 export const validatorRegister = (req: Request, res: Response, next: NextFunction) => {
-  let { email, password, passwordConfirm } = req.body;
+  let { email, password, retypePassword } = req.body;
   const errorsValidation: ErrorValidation[] = [];
 
   email = !email ? '' : email;
   password = !password ? '' : password;
-  passwordConfirm = !passwordConfirm ? '' : passwordConfirm;
+  retypePassword = !retypePassword ? '' : retypePassword;
 
   if (!validator.isEmail(email)) {
     errorsValidation.push({ email: 'Email is invalid' });
@@ -31,12 +31,12 @@ export const validatorRegister = (req: Request, res: Response, next: NextFunctio
     });
   }
 
-  if (validator.isEmpty(passwordConfirm)) {
-    errorsValidation.push({ passwordConfirm: 'Confirm password is required' });
+  if (validator.isEmpty(retypePassword)) {
+    errorsValidation.push({ retypePassword: 'Confirm password is required' });
   }
 
-  if (!validator.equals(password, passwordConfirm)) {
-    errorsValidation.push({ passwordConfirm: 'Passwords must match' });
+  if (!validator.equals(password, retypePassword)) {
+    errorsValidation.push({ retypePassword: 'Passwords must match' });
   }
 
   if (errorsValidation.length !== 0) {
