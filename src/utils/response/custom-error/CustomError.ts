@@ -24,6 +24,7 @@ export class CustomError extends Error {
     this.errors = errors;
     this.errorRaw = errorRaw;
     this.errorsValidation = errorsValidation;
+    Object.setPrototypeOf(this, new.target.prototype);
   }
 
   get HttpStatusCode() {
