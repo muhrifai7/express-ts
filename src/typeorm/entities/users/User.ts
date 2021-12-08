@@ -6,46 +6,46 @@ import { Role, Language } from './types';
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({
     unique: true,
   })
-  email: string;
+  email!: string;
 
   @Column()
-  password: string;
+  password!: string;
 
   @Column({
     nullable: true,
     unique: true,
   })
-  username: string;
+  username!: string;
 
   @Column({
     nullable: true,
   })
-  name: string;
+  name!: string;
 
   @Column({
     default: 'STANDARD' as Role,
     length: 30,
   })
-  role: string;
+  role!: string;
 
   @Column({
     default: 'en-US' as Language,
     length: 15,
   })
-  language: string;
+  language!: string;
 
   @Column()
   @CreateDateColumn()
-  created_at: Date;
+  created_at!: Date;
 
   @Column()
   @UpdateDateColumn()
-  updated_at: Date;
+  updated_at!: Date;
 
   setLanguage(language: Language) {
     this.language = language;

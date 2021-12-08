@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import { getRepository } from 'typeorm';
 
-import { User } from 'typeorm/entities/users/User';
+import { User } from '../../typeorm/entities/users/User';
 import { CustomError } from '../../utils/response/custom-error/CustomError';
 
-export const show = async (req: Request, res: Response, next: NextFunction) => {
+export const show = async (req: Request, res: Response|any, next: NextFunction) => {
   const id = req.params.id;
 
   const userRepository = getRepository(User);
