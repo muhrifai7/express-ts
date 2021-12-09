@@ -11,7 +11,6 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
     const customError = new CustomError(400, 'General', 'Authorization header not provided');
     return next(customError);
   }
-
   const token = authHeader.split(' ')[1];
   let jwtPayload: { [key: string]: any };
   try {

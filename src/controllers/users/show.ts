@@ -3,6 +3,7 @@ import { getRepository } from 'typeorm';
 
 import { User } from '../../typeorm/entities/users/User';
 import { CustomError } from '../../utils/response/custom-error/CustomError';
+import { customResult } from '../../utils/response/custom-success/customResult';
 
 export const show = async (req: Request, res: Response|any, next: NextFunction) => {
   const id = req.params.id;
@@ -17,7 +18,8 @@ export const show = async (req: Request, res: Response|any, next: NextFunction) 
       const customError = new CustomError(404, 'General', `User with id:${id} not found.`, ['User not found.']);
       return next(customError);
     }
-    res.customSuccess(200, 'User found', user);
+    // res.customSuccess(200, 'User found', user);
+    return next(res.status(200).send((customResult(200,"success",user))));
   } catch (err) {
     const customError = new CustomError(400, 'Raw', 'Error', null, err);
     return next(customError);
