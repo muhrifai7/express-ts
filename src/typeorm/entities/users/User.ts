@@ -1,9 +1,23 @@
 import bcrypt from 'bcryptjs';
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { 
+    Entity, 
+    PrimaryGeneratedColumn, 
+    Column, 
+    CreateDateColumn, 
+    UpdateDateColumn, 
+    OneToOne,
+    JoinColumn,
+    OneToMany
+   } from 'typeorm';
 
-import { Role, Language } from './types';
+import Role from '../roles/Role';
+import Profile from "../profile/Profile";
+import Department from "../department/Department"
+import Modules from "../modules/Modules"
+import EmailBlast from '../emailBlast/EmailBlast';
+import { RoleType, Language } from './userTypes';
 
-@Entity('users')
+@Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id!: number;
@@ -22,16 +36,13 @@ export class User {
   })
   username!: string;
 
-  @Column({
-    nullable: true,
-  })
-  name!: string;
+  @Column()
+  nip!: string;
 
   @Column({
-    default: 'STANDARD' as Role,
-    length: 30,
+    default : "STANDARD" as RoleType
   })
-  role!: string;
+  role_name!: string;
 
   @Column({
     default: 'en-US' as Language,
@@ -47,6 +58,25 @@ export class User {
   @UpdateDateColumn()
   updated_at!: Date;
 
+  @OneToOne(() => Profile, profile => profile.user) // specify inverse side as a second parameter
+  @JoinColumn()
+  profile!: Profile;
+
+  @OneToOne(() => Role, role => role.user) // specify inverse side as a second parameter
+  @JoinColumn()
+  role!: Role;
+
+  @OneToOne(() => Department, department => department.user)
+  @JoinColumn()
+  department!: Department;
+
+  @OneToOne(() => Modules, module => module.user)
+  @JoinColumn()
+  module!: Modules;
+
+  @OneToMany(() => EmailBlast, email => email.user)
+  emailBlast!: EmailBlast[];
+
   setLanguage(language: Language) {
     this.language = language;
   }
@@ -59,3 +89,5 @@ export class User {
     return bcrypt.compareSync(unencryptedPassword, this.password);
   }
 }
+
+export default User

@@ -1,0 +1,7 @@
+yarn typeorm migration:create -n =>
+yarn typeorm migration:run untuk run query di migrations alter atau create table 
+No changes in database schema were found - cannot generate a migration. To create a new empty migration use "typeorm migration:create" command
+
+create database postgres form shel
+CREATE DATABASE databasename;
+\l get all table

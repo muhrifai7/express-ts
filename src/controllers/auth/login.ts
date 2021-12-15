@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { getRepository } from 'typeorm';
 
-import { Role } from '../../typeorm/entities/users/types';
+import { RoleType } from '../../typeorm/entities/users/userTypes';
 import { User } from '../../typeorm/entities/users/User';
 import { JwtPayload } from '../../types/JwtPayload';
 import { createJwtToken } from '../../utils/createJwtToken';
@@ -26,9 +26,9 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
     const jwtPayload: JwtPayload = {
       id: user.id,
-      name: user.name,
+      username: user.username,
       email: user.email,
-      role: user.role as Role,
+      role: user.role_name as RoleType,
       created_at: user.created_at,
     };
 

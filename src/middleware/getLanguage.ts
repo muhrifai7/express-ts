@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { Language } from '../typeorm/entities/users/types';
+import { Language } from '../typeorm/entities/users/userTypes';
 
 export const getLanguage = (req: any, res: Response, next: NextFunction) => {
   const acceptLanguageHeader = req.get('Accept-Language') as Language | null;

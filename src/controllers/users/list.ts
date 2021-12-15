@@ -9,7 +9,7 @@ export const list = async (req: Request, res: Response, next: NextFunction) => {
   const userRepository = getRepository(User);
   try {
     const users = await userRepository.find({
-      select: ['id', 'username', 'name', 'email', 'role', 'language', 'created_at', 'updated_at'],
+      select: ['id', 'username', 'email', 'role', 'language', 'created_at', 'updated_at'],
     });
     return next(res.status(200).send((customResult(200,"success",users))));
   } catch (err) {

@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { Language } from 'typeorm/entities/users/types';
+import { Language } from 'typeorm/entities/users/userTypes';
 
 import { JwtPayload } from '../JwtPayload';
 

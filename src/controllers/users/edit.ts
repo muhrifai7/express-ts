@@ -7,7 +7,7 @@ import { customResult } from '../../utils/response/custom-success/customResult';
 
 export const edit = async(req:Request,res:Response|any,next:NextFunction) => {
     const {id} = req.params;
-    const { username, name } = req.body;
+    const { username } = req.body;
     const userRepository = getRepository(User);
     try {
         const user = await userRepository.findOne({where : {id}});
@@ -16,7 +16,6 @@ export const edit = async(req:Request,res:Response|any,next:NextFunction) => {
             return next(customError);
         }
         user.username = username;
-        user.name = name;
         try {
             await userRepository.save(user);
             // res.customSuccess(200, 'User successfully saved.');

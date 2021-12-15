@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { Role } from '../typeorm/entities/users/types';
+import { RoleType } from '../typeorm/entities/users/userTypes';
 import { CustomError } from '../utils/response/custom-error/CustomError';
 
-export const checkRole = (roles: Role[], isSelfAllowed = false) => {
+export const checkRole = (roles: RoleType[], isSelfAllowed = false) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const { id, role } = req.jwtPayload;
     const { id: requestId } = req.params;

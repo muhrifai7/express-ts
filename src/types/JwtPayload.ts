@@ -1,9 +1,9 @@
-import { Role } from '../typeorm/entities/users/types';
+import { RoleType } from '../typeorm/entities/users/userTypes';
 
 export type JwtPayload = {
   id: number;
-  name: string;
+  username: string;
   email: string;
-  role: Role;
+  role: RoleType;
   created_at: Date;
 };
