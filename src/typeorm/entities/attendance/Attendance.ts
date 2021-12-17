@@ -11,7 +11,7 @@ import {User} from "../users/User"
 
 @Entity()
 export class Attendance {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id!: string;
 
   @Column()

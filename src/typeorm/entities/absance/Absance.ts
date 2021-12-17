@@ -10,7 +10,7 @@ import {
   
   @Entity()
   export class Absence {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id!: string;
   
     @Column()

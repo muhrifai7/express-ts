@@ -1,8 +1,8 @@
-import { Role } from '../../typeorm/entities/roles/Role';
 import { Permission } from '../../typeorm/entities/permission/Permission';
 import { Request,Response,NextFunction } from 'express';
 import { getRepository } from 'typeorm';
 
+import { Role } from '../../typeorm/entities/roles/Role';
 import { CustomError } from '../../utils/response/custom-error/CustomError';
 
 export const create = async(req:Request,res:Response,next:NextFunction) => {

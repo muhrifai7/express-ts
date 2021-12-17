@@ -10,7 +10,7 @@ import {
   
   @Entity()
   export class Department {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id!: string;
   
     @Column()

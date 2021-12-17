@@ -5,15 +5,17 @@ import { User } from '../../typeorm/entities/users/User';
 import { CustomError } from '../../utils/response/custom-error/CustomError';
 import { customResult } from '../../utils/response/custom-success/customResult';
 
-export const list = async (req: Request, res: Response, next: NextFunction) => {
+export const list = async (req: Request, res: Response|any, next: NextFunction) => {
   const userRepository = getRepository(User);
   try {
-    const users = await userRepository.find({
-      select: ['id', 'username', 'email', 'role', 'language', 'created_at', 'updated_at'],
+    const user = await userRepository.find({
+      select : ["email","nip","role_name","username"],
+      relations : ["profile","role","role.permission","department","module","emailBlast"]
     });
-    return next(res.status(200).send((customResult(200,"success",users))));
+    // res.customSuccess(200, 'User found', user);
+    return next(res.status(200).send((customResult(200,"success",user))));
   } catch (err) {
-    const customError = new CustomError(400, 'Raw', `Can't retrieve list of users.`, null, err);
+    const customError = new CustomError(400, 'Raw', 'Error', null, err);
     return next(customError);
   }
 };

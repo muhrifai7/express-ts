@@ -11,7 +11,7 @@ router.get('/',list);
 
 router.post('/',create);
 
-router.get('/:id([0-9]+)', [checkJwt, checkRole(['ADMINISTRATOR'], true)], show);
+router.get('/:id([0-9]+)', [checkJwt, checkRole(['ADMINISTRATOR','STANDARD'], true)], show);
 
 router.patch('/:id([0-9]+)', [checkJwt, checkRole(['ADMINISTRATOR'], true), validatorEdit], edit);
 

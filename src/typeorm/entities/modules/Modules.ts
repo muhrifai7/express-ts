@@ -10,7 +10,7 @@ import {
   
   @Entity()
   export class Modules {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id!: string;
   
     @Column()

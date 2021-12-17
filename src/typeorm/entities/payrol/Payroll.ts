@@ -11,7 +11,7 @@ import {
   
   @Entity()
   export class Salary {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id!: string;
   
     @Column()

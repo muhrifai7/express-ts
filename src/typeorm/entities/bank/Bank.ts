@@ -10,7 +10,7 @@ import {
   
   @Entity()
   export class Bank {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id!: string;
   
     @Column()

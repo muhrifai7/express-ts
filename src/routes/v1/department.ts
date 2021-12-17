@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { list,create,show ,destroy,edit} from "../../controllers/profiles";
+import { list,create,show ,destroy,edit} from "../../controllers/departments";
 import { checkJwt } from '../../middleware/checkJwt';
 import { checkRole } from '../../middleware/checkRole';
 import { validatorEdit } from '../../middleware/validation/users';

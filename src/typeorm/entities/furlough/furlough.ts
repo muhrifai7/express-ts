@@ -11,7 +11,7 @@ import {
   
   @Entity()
   export class Furlough {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id!: string;
   
     @Column()

@@ -12,7 +12,7 @@ import {User} from "../users/User"
 
 @Entity()
 export class Salary {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id!: string;
 
   @Column()

@@ -10,7 +10,7 @@ import {User} from "../users/User"
 
 @Entity()
 export class EmailBlast {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id!: string;
 
   @Column()

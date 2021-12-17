@@ -11,7 +11,7 @@ import {User} from "../users/User"
 
 @Entity()
 export class BankAccount {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id!: string;
 
   @Column()

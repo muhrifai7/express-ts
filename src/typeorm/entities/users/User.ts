@@ -31,8 +31,12 @@ export class User {
   password!: string;
 
   @Column({
+    default : true as boolean
+  })
+  isActive!: boolean;
+
+  @Column({
     nullable: true,
-    unique: true,
   })
   username!: string;
 

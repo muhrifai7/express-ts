@@ -10,7 +10,7 @@ import {User} from "../users/User"
 
 @Entity()
 export class Info {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id!: string;
 
   @Column()
