@@ -3,20 +3,28 @@ import { getRepository } from 'typeorm';
 
 import { User } from '../../typeorm/entities/users/User';
 import { Profile } from '../../typeorm/entities/profile/Profile';
+import { Role } from '../../typeorm/entities/roles/Role';
 import { CustomError } from '../../utils/response/custom-error/CustomError';
-import { profile } from 'console';
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
-  const { email, password,role_name } = req.body;
-
   const userRepository = getRepository(User);
-  const profileRepository = getRepository(Profile)
+  const profileRepository = getRepository(Profile);
+  const roleRepository = getRepository(Role);
+
+  const { email, password,role_name } = req.body;
   try {
     const user = await userRepository.findOne({ where: { email } });
-
     if (user) {
       const customError = new CustomError(400, 'General', 'User already exists', [
         `Email '${user.email}' already exists`,
+      ]);
+      return next(customError);
+    }
+
+    const role = await roleRepository.findOne({ where: { name : role_name } });
+    if (!role) {
+      const customError = new CustomError(400, 'General', 'Role does not exists', [
+        `not exists`,
       ]);
       return next(customError);
     }

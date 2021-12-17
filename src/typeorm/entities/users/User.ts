@@ -74,7 +74,7 @@ export class User {
 
   @OneToOne(() => Modules, module => module.user)
   @JoinColumn()
-  module!: Modules;
+  module!: Modules[];
 
   @OneToMany(() => EmailBlast, email => email.user)
   emailBlast!: EmailBlast[];

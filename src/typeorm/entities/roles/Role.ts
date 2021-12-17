@@ -14,10 +14,12 @@ import {
   
   @Entity()
   export class Role {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id!: string;
   
-    @Column()
+    @Column({
+      unique: true,
+    })
     name!: string;
   
     @Column()
@@ -32,6 +34,6 @@ import {
     @OneToOne(() => User, user => user.role) // specify inverse side as a second parameter
     user!: User;
     
-    @OneToMany(() => Permission, (permission) => permission.id)
-    permissions!: Permission[];
+    @OneToOne(() => Permission, (permission) => permission.role)
+    permission!: Permission;
   }

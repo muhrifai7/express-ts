@@ -4,7 +4,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
+  OneToOne,
   JoinColumn
 } from 'typeorm';
 
@@ -12,15 +12,36 @@ import { Role } from "../roles/Role"
 
 @Entity()
 export class Permission {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id!: string;
 
   @Column({
-    default : "READ" as string
+    nullable : true,
+    default : false as boolean
   })
-  name!: string;
+  canCreate!: boolean;
 
-  @Column()
+  @Column({
+     nullable : true,
+    default : false as boolean
+  })
+  canUpdate!: boolean;
+
+  @Column({
+     nullable : true,
+    default : false as boolean
+  })
+  canDelete!: boolean;
+
+  @Column({
+     nullable : true,
+    default : false as boolean
+  })
+  canRead!: boolean;
+
+  @Column({
+    nullable : true
+  })
   description!: string;
 
   @CreateDateColumn()
@@ -29,7 +50,9 @@ export class Permission {
   @UpdateDateColumn()
   updated_at!: string;
 
-  @ManyToOne(() => Role, role => role.permissions)
+  @Column()
+  role_id!: string;
+  @OneToOne(() => Role, role => role.permission)
   @JoinColumn({ name: "role_id" })
   role!: Role;
 }
