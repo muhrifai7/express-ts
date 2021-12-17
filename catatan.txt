@@ -5,3 +5,8 @@ No changes in database schema were found - cannot generate a migration. To creat
 create database postgres form shel
 CREATE DATABASE databasename;
 \l get all table
+
+data params camelcase
+
+pr 
+delete relaton table

@@ -1,27 +1,28 @@
-import { User } from '../../typeorm/entities/users/User';
 import { Request,Response,NextFunction } from 'express';
 import { getRepository } from 'typeorm';
 
+import { Department } from './../../typeorm/entities/department/Department';
 import { CustomError } from '../../utils/response/custom-error/CustomError';
 import { customResult } from '../../utils/response/custom-success/customResult';
 
 export const edit = async(req:Request,res:Response|any,next:NextFunction) => {
     const {id} = req.params;
-    const { username } = req.body;
-    const userRepository = getRepository(User);
+    const { name,description } = req.body;
+    const departmentRepository = getRepository(Department);
     try {
-        const user = await userRepository.findOne({where : {id}});
-        if(!user){
+        const department = await departmentRepository.findOne({where : {id}});
+        if(!department){
             const customError = new CustomError(404, 'General', `User with id:${id} not found.`, ['User not found.']);
             return next(customError);
         }
-        user.username = username;
+        department.name = !name ? "" : name ;
+        department.description = !description ? "" : description;
         try {
-            await userRepository.save(user);
+            await departmentRepository.save(department);
             // res.customSuccess(200, 'User successfully saved.');
             return next(res.status(200).send((customResult(200,"success"))));
         } catch (err) {
-            const customError = new CustomError(409, 'Raw', `User '${user.email}' can't be saved.`, null, err);
+            const customError = new CustomError(409, 'Raw', `Department '${department.name}' can't be saved.`, null, err);
             return next(customError);
         }
     } catch (error) {

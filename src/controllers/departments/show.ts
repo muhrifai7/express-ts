@@ -1,25 +1,25 @@
 import { Request, Response, NextFunction } from 'express';
 import { getRepository } from 'typeorm';
 
-import { User } from '../../typeorm/entities/users/User';
+import { Department } from './../../typeorm/entities/department/Department';
 import { CustomError } from '../../utils/response/custom-error/CustomError';
 import { customResult } from '../../utils/response/custom-success/customResult';
 
 export const show = async (req: Request, res: Response|any, next: NextFunction) => {
   const id = req.params.id;
 
-  const userRepository = getRepository(User);
+  const departmentRepository = getRepository(Department);
   try {
-    const user = await userRepository.findOne(id, {
-      select: ['id', 'username', 'email', 'role', 'language', 'created_at', 'updated_at'],
+    const department = await departmentRepository.findOne(id, {
+      select: ['id', 'name', 'description'],
     });
 
-    if (!user) {
-      const customError = new CustomError(404, 'General', `User with id:${id} not found.`, ['User not found.']);
+    if (!department) {
+      const customError = new CustomError(404, 'General', `Department with id:${id} not found.`, ['User not found.']);
       return next(customError);
     }
     // res.customSuccess(200, 'User found', user);
-    return next(res.status(200).send((customResult(200,"success",user))));
+    return next(res.status(200).send((customResult(200,"success",department))));
   } catch (err) {
     const customError = new CustomError(400, 'Raw', 'Error', null, err);
     return next(customError);
