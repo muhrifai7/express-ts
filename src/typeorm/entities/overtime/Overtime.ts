@@ -7,10 +7,10 @@ import {
     UpdateDateColumn,
     OneToOne
   } from 'typeorm';
-  import User from "../users/User"
+  import {User} from "../users/User"
   
   @Entity()
-  class Overtime {
+  export class Overtime {
     @PrimaryGeneratedColumn('uuid')
     id!: string;
   
@@ -33,5 +33,3 @@ import {
     updated_at!: string;
 
   }
-  
-  export default Overtime;

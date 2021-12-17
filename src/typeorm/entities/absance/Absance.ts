@@ -7,10 +7,9 @@ import {
     UpdateDateColumn,
     OneToOne
   } from 'typeorm';
-  import User from "../users/User"
   
   @Entity()
-  class Absence {
+  export class Absence {
     @PrimaryGeneratedColumn('uuid')
     id!: string;
   
@@ -39,5 +38,3 @@ import {
     updated_at!: string;
 
   }
-  
-  export default Absence;

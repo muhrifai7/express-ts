@@ -7,10 +7,9 @@ import {
     UpdateDateColumn,
     OneToOne
   } from 'typeorm';
-  import User from "../users/User"
   
   @Entity()
-  class Bank {
+  export class Bank {
     @PrimaryGeneratedColumn('uuid')
     id!: string;
   
@@ -21,5 +20,3 @@ import {
     code!: string;
 
   }
-  
-  export default Bank;

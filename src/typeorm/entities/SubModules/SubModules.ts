@@ -6,10 +6,10 @@ import {
     UpdateDateColumn,
     OneToOne
   } from 'typeorm';
-  import User from "../users/User"
+  import {User} from "../users/User"
   
   @Entity()
-  class SubModules {
+  export class SubModules {
     @PrimaryGeneratedColumn('uuid')
     id!: string;
   
@@ -38,5 +38,3 @@ import {
     updated_at!: string;
 
   }
-  
-  export default SubModules;

@@ -10,11 +10,11 @@ import {
     OneToMany
    } from 'typeorm';
 
-import Role from '../roles/Role';
-import Profile from "../profile/Profile";
-import Department from "../department/Department"
-import Modules from "../modules/Modules"
-import EmailBlast from '../emailBlast/EmailBlast';
+import {Role} from '../roles/Role';
+import {Profile} from "../profile/Profile";
+import {Department} from "../department/Department"
+import {Modules} from "../modules/Modules"
+import {EmailBlast} from '../emailBlast/EmailBlast';
 import { RoleType, Language } from './userTypes';
 
 @Entity()
@@ -36,7 +36,10 @@ export class User {
   })
   username!: string;
 
-  @Column()
+  @Column({
+    nullable: true,
+    unique: true,
+  })
   nip!: string;
 
   @Column({
@@ -58,8 +61,7 @@ export class User {
   @UpdateDateColumn()
   updated_at!: Date;
 
-  @OneToOne(() => Profile, profile => profile.user) // specify inverse side as a second parameter
-  @JoinColumn()
+  @OneToOne(() => Profile, profile => profile.user) 
   profile!: Profile;
 
   @OneToOne(() => Role, role => role.user) // specify inverse side as a second parameter
@@ -89,5 +91,3 @@ export class User {
     return bcrypt.compareSync(unencryptedPassword, this.password);
   }
 }
-
-export default User

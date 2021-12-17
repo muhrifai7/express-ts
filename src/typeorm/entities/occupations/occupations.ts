@@ -1,43 +1,41 @@
 import { create } from '../../../controllers/users/create';
 import {
-    Entity,
-    Column,
-    PrimaryGeneratedColumn,
-    CreateDateColumn,
-    UpdateDateColumn,
-    OneToOne
-  } from 'typeorm';
-  import User from "../users/User"
-  
-  @Entity()
-  class Occupation {
-    @PrimaryGeneratedColumn('uuid')
-    id!: string;
-  
-    @Column()
-    code!: string;
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToOne
+} from 'typeorm';
+import {User} from "../users/User"
 
-    @Column()
-    name!: number;
+@Entity()
+export class Occupation {
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
-    @Column()
-    dailyRate!: string;
+  @Column()
+  code!: string;
 
-    @Column()
-    montlyRate!: string;
+  @Column()
+  name!: number;
 
-    @Column()
-    workingDaysPerMonth!: string;
+  @Column()
+  dailyRate!: string;
 
-    @Column()
-    updated_by!: string;
-  
-    @CreateDateColumn()
-    created_at!: string;
-  
-    @UpdateDateColumn()
-    updated_at!: string;
+  @Column()
+  montlyRate!: string;
 
-  }
-  
-  export default Occupation;
+  @Column()
+  workingDaysPerMonth!: string;
+
+  @Column()
+  updated_by!: string;
+
+  @CreateDateColumn()
+  created_at!: string;
+
+  @UpdateDateColumn()
+  updated_at!: string;
+
+}

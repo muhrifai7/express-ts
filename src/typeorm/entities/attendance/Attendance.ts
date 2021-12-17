@@ -1,46 +1,44 @@
 import { create } from './../../../controllers/users/create';
 import {
-    Entity,
-    Column,
-    PrimaryGeneratedColumn,
-    CreateDateColumn,
-    UpdateDateColumn,
-    OneToOne
-  } from 'typeorm';
-  import User from "../users/User"
-  
-  @Entity()
-  class Attendance {
-    @PrimaryGeneratedColumn('uuid')
-    id!: string;
-  
-    @Column()
-    title!: string;
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToOne
+} from 'typeorm';
+import {User} from "../users/User"
 
-    @Column()
-    attendanceDate!: string;
+@Entity()
+export class Attendance {
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
-    @Column()
-    timeOfEntry!: string;
+  @Column()
+  title!: string;
 
-    @Column()
-    timeOfOut!: string;
-  
-    @Column()
-    totalWorkingDays!: string;
+  @Column()
+  attendanceDate!: string;
 
-    @Column()
-    createdBy!: string;
+  @Column()
+  timeOfEntry!: string;
 
-    @Column()
-    updatedBy!: string;
-  
-    @CreateDateColumn()
-    created_at!: string;
-  
-    @UpdateDateColumn()
-    updated_at!: string;
+  @Column()
+  timeOfOut!: string;
 
-  }
-  
-  export default Attendance;
+  @Column()
+  totalWorkingDays!: string;
+
+  @Column()
+  createdBy!: string;
+
+  @Column()
+  updatedBy!: string;
+
+  @CreateDateColumn()
+  created_at!: string;
+
+  @UpdateDateColumn()
+  updated_at!: string;
+
+}

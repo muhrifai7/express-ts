@@ -1,40 +1,38 @@
 import { create } from './../../../controllers/users/create';
 import {
-    Entity,
-    Column,
-    PrimaryGeneratedColumn,
-    CreateDateColumn,
-    UpdateDateColumn,
-    OneToOne
-  } from 'typeorm';
-  import User from "../users/User"
-  
-  @Entity()
-  class BankAccount {
-    @PrimaryGeneratedColumn('uuid')
-    id!: string;
-  
-    @Column()
-    nik!: string;
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToOne
+} from 'typeorm';
+import {User} from "../users/User"
 
-    @Column()
-    description!: string;
+@Entity()
+export class BankAccount {
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
-    @Column()
-    accountNumber!: string;
+  @Column()
+  nik!: string;
 
-    @Column()
-    createdBy!: string;
+  @Column()
+  description!: string;
 
-    @Column()
-    updatedBy!: string;
-  
-    @CreateDateColumn()
-    created_at!: string;
-  
-    @UpdateDateColumn()
-    updated_at!: string;
+  @Column()
+  accountNumber!: string;
 
-  }
-  
-  export default BankAccount;
+  @Column()
+  createdBy!: string;
+
+  @Column()
+  updatedBy!: string;
+
+  @CreateDateColumn()
+  created_at!: string;
+
+  @UpdateDateColumn()
+  updated_at!: string;
+
+}

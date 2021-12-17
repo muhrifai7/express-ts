@@ -1,43 +1,75 @@
-import {Entity, PrimaryGeneratedColumn, Column,OneToOne,CreateDateColumn,UpdateDateColumn} from "typeorm";
-import User from "../users/User"
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    OneToOne,
+    CreateDateColumn,
+    UpdateDateColumn,
+    JoinColumn
+} from "typeorm";
+import { User } from "../users/User"
 
 @Entity()
-export default class Profile {
+export class Profile {
 
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     placeOfBirth!: string;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     dateOfBirth!: string;
 
-    @Column()
+    @Column({
+        nullable: true,
+        default : "MALE"
+        
+    })
     gender!: string;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     religion!: string;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     academic!: string;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     title!: string;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     address!: string;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     city!: string;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     country!: string;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     postalCode!: string;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     photo!: string;
 
     @CreateDateColumn()
@@ -46,7 +78,13 @@ export default class Profile {
     @UpdateDateColumn()
     updated_at!: string;
 
-    @OneToOne(() => User, user => user.profile) // specify inverse side as a second parameter
+    @Column()
+    user_id!: number;
+    @OneToOne(() => User, user => user.profile)
+    @JoinColumn({ name: "user_id" })
     user!: User;
+    // @OneToOne(() => User, user => user.profile)
+    // @JoinColumn()
+    // user!: User;
 
 }

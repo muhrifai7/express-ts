@@ -1,42 +1,40 @@
 import {
-    Entity,
-    Column,
-    PrimaryGeneratedColumn,
-    CreateDateColumn,
-    UpdateDateColumn,
-    OneToOne
-  } from 'typeorm';
-  import User from "../users/User"
-  
-  @Entity()
-  class Info {
-    @PrimaryGeneratedColumn('uuid')
-    id!: string;
-  
-    @Column()
-    title!: string;
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToOne
+} from 'typeorm';
+import {User} from "../users/User"
 
-    @Column()
-    subtitle!: string;
+@Entity()
+export class Info {
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
-    @Column()
-    imageUrl!: string;
+  @Column()
+  title!: string;
 
-    @Column()
-    content!: string;
-  
-    @Column()
-    createdBy!: string;
+  @Column()
+  subtitle!: string;
 
-    @Column()
-    updatedBy!: string;
-  
-    @CreateDateColumn()
-    created_at!: string;
-  
-    @UpdateDateColumn()
-    updated_at!: string;
+  @Column()
+  imageUrl!: string;
 
-  }
-  
-  export default Info;
+  @Column()
+  content!: string;
+
+  @Column()
+  createdBy!: string;
+
+  @Column()
+  updatedBy!: string;
+
+  @CreateDateColumn()
+  created_at!: string;
+
+  @UpdateDateColumn()
+  updated_at!: string;
+
+}

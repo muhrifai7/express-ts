@@ -6,10 +6,10 @@ import {
     UpdateDateColumn,
     OneToOne
   } from 'typeorm';
-  import User from "../users/User"
+  import {User} from "../users/User"
   
   @Entity()
-  class Modules {
+  export class Modules {
     @PrimaryGeneratedColumn('uuid')
     id!: string;
   
@@ -40,5 +40,3 @@ import {
     @OneToOne(() => User, user => user.module) // specify inverse side as a second parameter
     user!: User;
   }
-  
-  export default Modules;

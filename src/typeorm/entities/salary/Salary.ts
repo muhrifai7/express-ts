@@ -1,49 +1,48 @@
 import { create } from '../../../controllers/users/create';
 import {
-    Entity,
-    Column,
-    PrimaryGeneratedColumn,
-    CreateDateColumn,
-    UpdateDateColumn,
-    OneToOne
-  } from 'typeorm';
-  import User from "../users/User"
-  
-  @Entity()
-  class Salary {
-    @PrimaryGeneratedColumn('uuid')
-    id!: string;
-  
-    @Column()
-    nip!: string;
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToOne
+} from 'typeorm';
 
-    @Column()
-    basicSalary!: number;
+import {User} from "../users/User"
 
-    @Column()
-    overtimePay!: number;
+@Entity()
+export class Salary {
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
-    @Column()
-    tax!: number;
+  @Column()
+  nip!: string;
 
-    @Column()
-    jamsostek!: number;
+  @Column()
+  basicSalary!: number;
 
-    @Column()
-    allowance!: number;
+  @Column()
+  overtimePay!: number;
 
-    @Column()
-    created_by!: string;
+  @Column()
+  tax!: number;
 
-    @Column()
-    updated_by!: string;
-  
-    @CreateDateColumn()
-    created_at!: string;
-  
-    @UpdateDateColumn()
-    updated_at!: string;
+  @Column()
+  jamsostek!: number;
 
-  }
-  
-  export default Salary;
+  @Column()
+  allowance!: number;
+
+  @Column()
+  created_by!: string;
+
+  @Column()
+  updated_by!: string;
+
+  @CreateDateColumn()
+  created_at!: string;
+
+  @UpdateDateColumn()
+  updated_at!: string;
+
+}

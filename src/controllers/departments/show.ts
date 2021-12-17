@@ -11,8 +11,7 @@ export const show = async (req: Request, res: Response|any, next: NextFunction) 
   const userRepository = getRepository(User);
   try {
     const user = await userRepository.findOne(id, {
-      select: ['id', 'username', 'email', 'role','nip', 'language', 'created_at', 'updated_at'],
-      relations : ["profile"]
+      select: ['id', 'username', 'email', 'role', 'language', 'created_at', 'updated_at'],
     });
 
     if (!user) {

@@ -9,11 +9,11 @@ import {
     JoinColumn
   } from 'typeorm';
   
-  import Permission from '../permission/Permission';
-  import User from '../users/User';
+  import { User } from '../users/User';
+  import { Permission } from '../permission/Permission';
   
   @Entity()
-  class Role {
+  export class Role {
     @PrimaryGeneratedColumn('uuid')
     id!: string;
   
@@ -32,8 +32,6 @@ import {
     @OneToOne(() => User, user => user.role) // specify inverse side as a second parameter
     user!: User;
     
-    // @OneToMany(() => Permission, (permission) => permission.id)
-    // permissionId!: Permission[];
+    @OneToMany(() => Permission, (permission) => permission.id)
+    permissions!: Permission[];
   }
-  
-  export default Role;
