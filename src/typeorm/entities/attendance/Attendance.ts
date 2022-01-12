@@ -14,26 +14,35 @@ export class Attendance {
   @PrimaryGeneratedColumn()
   id!: string;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   title!: string;
 
-  @Column()
-  attendanceDate!: string;
+  @Column({
+    nullable: true,
+  })
+  timeOfEntry!: Date;
 
-  @Column()
-  timeOfEntry!: string;
+  @Column({
+    nullable: true,
+  })
+  timeOfOut!: Date;
 
-  @Column()
-  timeOfOut!: string;
-
-  @Column()
+  @Column({
+    nullable: true,
+  })
   totalWorkingDays!: string;
 
-  @Column()
-  createdBy!: string;
+  @Column({
+    nullable: true,
+  })
+  created_by!: string;
 
-  @Column()
-  updatedBy!: string;
+  @Column({
+    nullable: true,
+  })
+  updated_by!: string;
 
   @CreateDateColumn()
   created_at!: string;

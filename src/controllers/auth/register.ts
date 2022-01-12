@@ -33,7 +33,6 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
       const newUser = new User();
       newUser.email = email;
       newUser.role_name = role_name;
-      newUser.role_name = role_name;
       newUser.password = password;
       newUser.hashPassword();
       const dataUser = await userRepository.save(newUser);

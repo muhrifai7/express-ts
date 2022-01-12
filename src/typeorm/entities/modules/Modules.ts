@@ -4,7 +4,7 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
-    OneToOne
+    ManyToOne
   } from 'typeorm';
   import {User} from "../users/User"
   
@@ -37,6 +37,6 @@ import {
     @UpdateDateColumn()
     updated_at!: string;
 
-    @OneToOne(() => User, user => user.module) // specify inverse side as a second parameter
+    @ManyToOne(() => User, user => user.module) // specify inverse side as a second parameter
     user!: User;
   }

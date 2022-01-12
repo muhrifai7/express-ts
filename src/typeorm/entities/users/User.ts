@@ -76,7 +76,7 @@ export class User {
   @JoinColumn()
   department!: Department;
 
-  @OneToOne(() => Modules, module => module.user)
+  @OneToMany(() => Modules, module => module.user)
   @JoinColumn()
   module!: Modules[];
 

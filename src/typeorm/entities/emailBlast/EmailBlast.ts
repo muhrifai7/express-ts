@@ -28,6 +28,6 @@ export class EmailBlast {
   @UpdateDateColumn()
   updated_at!: string;
 
-  @ManyToOne(() => User, user => user.module) // specify inverse side as a second parameter
+  @ManyToOne(() => User, user => user.emailBlast) // specify inverse side as a second parameter
   user!: User;
 }
