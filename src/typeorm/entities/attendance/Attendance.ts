@@ -1,13 +1,11 @@
-import { create } from './../../../controllers/users/create';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
-  OneToOne
+  UpdateDateColumn
 } from 'typeorm';
-import {User} from "../users/User"
+import moment from 'moment';
 
 @Entity()
 export class Attendance {
@@ -22,12 +20,12 @@ export class Attendance {
   @Column({
     nullable: true,
   })
-  timeOfEntry!: Date;
+  timeOfEntry!: string;
 
   @Column({
     nullable: true,
   })
-  timeOfOut!: Date;
+  timeOfOut!: string;
 
   @Column({
     nullable: true,
@@ -44,10 +42,14 @@ export class Attendance {
   })
   updated_by!: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({
+    default : moment(new Date()).format("YYYY-MM-DD")
+  })
   created_at!: string;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({
+    default : moment(new Date()).format("YYYY-MM-DD")
+  })
   updated_at!: string;
 
 }

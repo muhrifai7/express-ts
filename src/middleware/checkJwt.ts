@@ -13,7 +13,7 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
   }
   const token = authHeader.split(' ')[1];
   let jwtPayload: { [key: string]: any };
-  try {
+  try {    
     jwtPayload = jwt.verify(token, process.env.JWT_SECRET as string) as { [key: string]: any };
     console.log('result  =>',jwtPayload);
     ['iat', 'exp'].forEach((keyToRemove) => delete jwtPayload[keyToRemove]);

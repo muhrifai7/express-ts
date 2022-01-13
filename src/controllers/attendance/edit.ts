@@ -18,7 +18,7 @@ export const edit = async(req:Request,res:Response|any,next:NextFunction) => {
         department.name = !name ? "" : name ;
         department.description = !description ? "" : description;
         try {
-            await departmentRepository.save(department);
+            await departmentRepository.update({id},department);
             // res.customSuccess(200, 'User successfully saved.');
             return next(res.status(200).send((customResult(200,"success"))));
         } catch (err) {
