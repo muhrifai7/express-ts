@@ -76,15 +76,12 @@ export class Profile {
     createdAt!: string;
   
     @UpdateDateColumn()
-    updated_at!: string;
+    updatedAt!: string;
 
     @Column()
     user_id!: number;
     @OneToOne(() => User, user => user.profile)
     @JoinColumn({ name: "user_id" })
     user!: User;
-    // @OneToOne(() => User, user => user.profile)
-    // @JoinColumn()
-    // user!: User;
 
 }

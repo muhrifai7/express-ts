@@ -7,8 +7,8 @@ import { Attendance } from './../../typeorm/entities/attendance/Attendance';
 
 export const create_from_scan = async(req:Request,res:Response,next:NextFunction) => {
     const attendanceRepository = getRepository(Attendance);
-    const { email } = req?.query;
-    if(!email){
+    const { email,id } = req?.query;
+    if(!email && !id){
         const customeError = new CustomError(400,'Raw','Error',null,"Undefined Token");
         return next(customeError);
     }
@@ -24,9 +24,10 @@ export const create_from_scan = async(req:Request,res:Response,next:NextFunction
                 const newData = new Attendance();
                 newData.timeOfEntry = moment(new Date()).format("YYYY-MM-DD hh-mm-ss");
                 newData.created_by = email as string;
+                newData.user_id = id as string;
                 const data_attendance = attendanceRepository.create(newData);
                 await attendanceRepository.save(data_attendance);
-                return res.status(200).json({status: 200,message :"Attendance in successfully created." });
+                return res.status(200).json({status: 200,message :"Attendance is successfully created." });
             } catch (error) {
                 const customeError = new CustomError(400,'Raw','Error',null,error);
                 return next(customeError);
@@ -49,6 +50,8 @@ export const create_from_scan = async(req:Request,res:Response,next:NextFunction
                 return next(customeError);
             }
         }
+        const customeError = new CustomError(400,'Raw','Error',null,"Attendance out unsuccessfully created");
+        return next(customeError);
     } catch (error) {
         const customeError = new CustomError(400,'Raw','Error',null,error);
         return next(customeError);

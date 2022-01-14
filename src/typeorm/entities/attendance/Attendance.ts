@@ -3,9 +3,14 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
+  ManyToMany
 } from 'typeorm';
 import moment from 'moment';
+
+import { User } from '../users/User';
 
 @Entity()
 export class Attendance {
@@ -51,5 +56,11 @@ export class Attendance {
     default : moment(new Date()).format("YYYY-MM-DD")
   })
   updated_at!: string;
+
+  @Column()
+    user_id!: string;
+    @ManyToOne(() => User, user => user.attendance)
+    @JoinColumn({ name: "user_id" })
+    user!: User;
 
 }

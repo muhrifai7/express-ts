@@ -15,6 +15,7 @@ import {Profile} from "../profile/Profile";
 import {Department} from "../department/Department"
 import {Modules} from "../modules/Modules"
 import {EmailBlast} from '../emailBlast/EmailBlast';
+import { Attendance } from './../attendance/Attendance';
 import { RoleType, Language } from './userTypes';
 
 @Entity()
@@ -82,6 +83,9 @@ export class User {
 
   @OneToMany(() => EmailBlast, email => email.user)
   emailBlast!: EmailBlast[];
+
+  @OneToOne(() => Attendance, attendance => attendance.user) 
+  attendance!: Attendance;
 
   setLanguage(language: Language) {
     this.language = language;

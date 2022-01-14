@@ -13,7 +13,8 @@ router.get('/_scan',create_from_scan);
 
 router.post('/',[checkJwt, checkRole(['ADMINISTRATOR','MANAGER'], true)],create);
 
-router.get('/:id([0-9]+)', [checkJwt, checkRole(['ADMINISTRATOR'], true)], show);
+// [checkJwt, checkRole(['ADMINISTRATOR','MANAGER','STANDARD','STAFF'], true)]
+router.get('/:id([0-9]+)', show);
 
 router.patch('/:id([0-9]+)', [checkJwt, checkRole(['ADMINISTRATOR'], true), validatorEdit], edit);
 

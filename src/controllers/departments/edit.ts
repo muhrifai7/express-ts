@@ -7,7 +7,6 @@ import { customResult } from '../../utils/response/custom-success/customResult';
 
 export const edit = async(req:Request,res:Response|any,next:NextFunction) => {
     const {id} = req.params;
-    const { name,description } = req.body;
     const departmentRepository = getRepository(Department);
     try {
         const department = await departmentRepository.findOne({where : {id}});
@@ -15,10 +14,12 @@ export const edit = async(req:Request,res:Response|any,next:NextFunction) => {
             const customError = new CustomError(404, 'General', `User with id:${id} not found.`, ['User not found.']);
             return next(customError);
         }
-        department.name = !name ? "" : name ;
-        department.description = !description ? "" : description;
+        const newDate = {
+            ...department,
+            ...req.body
+        }
         try {
-            await departmentRepository.save(department);
+            await departmentRepository.save(newDate);
             // res.customSuccess(200, 'User successfully saved.');
             return next(res.status(200).send((customResult(200,"success"))));
         } catch (err) {
