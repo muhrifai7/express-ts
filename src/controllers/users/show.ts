@@ -6,7 +6,8 @@ import { CustomError } from '../../utils/response/custom-error/CustomError';
 import { customResult } from '../../utils/response/custom-success/customResult';
 
 export const show = async (req: Request, res: Response|any, next: NextFunction) => {
-  const id = req.params.id;
+  const {id} = req.jwtPayload;
+  console.log('result  =>',req.jwtPayload)
   const userRepository = getRepository(User);
   try {
     const user = await userRepository.findOne(id, {

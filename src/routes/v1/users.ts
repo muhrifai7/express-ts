@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { list,create,show ,destroy,edit} from "../../controllers/users";
+import { list,create,show ,destroy,edit,edit_me} from "../../controllers/users";
 import { checkJwt } from '../../middleware/checkJwt';
 import { checkRole } from '../../middleware/checkRole';
 import { validatorEdit } from '../../middleware/validation/users';
@@ -11,9 +11,11 @@ router.get('/',list);
 
 router.post('/',create);
 
-router.get('/:id([0-9]+)', [checkJwt, checkRole(['ADMINISTRATOR','STANDARD'], true)], show);
+router.get('/me', [checkJwt, checkRole(['ADMINISTRATOR','STANDARD','MANAGER','STAFF'], true)], show);
 
 router.patch('/:id([0-9]+)', [checkJwt, checkRole(['ADMINISTRATOR'], true), validatorEdit], edit);
+
+router.patch('/me', [checkJwt, checkRole(['ADMINISTRATOR'], true), validatorEdit], edit_me);
 
 router.delete('/:id([0-9]+)', [checkJwt, checkRole(['ADMINISTRATOR'], true)], destroy);
 

@@ -33,9 +33,9 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     };
 
     try {
-      const token = createJwtToken(jwtPayload);
+      const accessToken = createJwtToken(jwtPayload);
       // res.customSuccess(200, 'Token successfully created.', `Bearer ${token}`);
-      return res.status(200).json({status: 200,message :"Token successfully created.",responseData : { token } });
+      return res.status(200).json({status: 200,message :"Token successfully created.",responseData : { accessToken } });
     } catch (err) {
       console.log(err)
       const customError = new CustomError(400, 'Raw', "Token can't be created", null, err);
