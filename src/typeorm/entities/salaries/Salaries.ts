@@ -11,32 +11,29 @@ import {
 import {User} from "../users/User"
 
 @Entity()
-export class Salary {
+export class Salaries {
   @PrimaryGeneratedColumn()
   id!: string;
 
   @Column()
-  nip!: string;
-
-  @Column()
-  basicSalary!: number;
-
-  @Column()
   overtimePay!: number;
-
+  // persentase
   @Column()
-  tax!: number;
+  allowance!: string;
 
-  @Column()
-  jamsostek!: number;
+  @Column({
+    nullable : true
+  })
+  additional!: string;
 
-  @Column()
-  allowance!: number;
-
-  @Column()
+  @Column({
+    nullable : true
+  })
   created_by!: string;
 
-  @Column()
+  @Column({
+    nullable : true
+  })
   updated_by!: string;
 
   @CreateDateColumn()
@@ -45,4 +42,6 @@ export class Salary {
   @UpdateDateColumn()
   updated_at!: string;
 
+  @OneToOne(() => User, user => user.salaries)
+  user!: User;
 }

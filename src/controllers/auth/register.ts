@@ -32,6 +32,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     try {
       const newUser = new User();
       newUser.email = email;
+      newUser.role_id = role.id;
       newUser.role_name = role_name;
       newUser.password = password;
       newUser.hashPassword();

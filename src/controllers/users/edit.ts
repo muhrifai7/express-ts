@@ -8,7 +8,7 @@ import { customResult } from '../../utils/response/custom-success/customResult';
  
 export const edit = async(req:Request,res:Response|any,next:NextFunction) => {
     let { id } = req.params;
-    let { username,nip,role_name,isActive,dataProfile } = req.body;
+    let { username,nip,roleName,isActive,dataProfile,basicSalary } = req.body;
     let { placeOfBirth,dateOfBirth,gender,religion,academic,title,address,city,country,postalCode,photo} = dataProfile;
     const userRepository = getRepository(User);
     const profileRepositoy = getRepository(Profile)
@@ -28,7 +28,8 @@ export const edit = async(req:Request,res:Response|any,next:NextFunction) => {
             username,
             isActive,
             nip,
-            role_name,
+            roleName,
+            basicSalary
         }
         const newProfile = {
             ...profile,

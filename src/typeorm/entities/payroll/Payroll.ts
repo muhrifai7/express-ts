@@ -5,17 +5,16 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
+    OneToMany,
     OneToOne
   } from 'typeorm';
-  import {User} from "../users/User"
+
+  import { Salaries } from "../salaries/Salaries"
   
   @Entity()
-  export class Salary {
+  export class Payroll {
     @PrimaryGeneratedColumn()
     id!: string;
-  
-    @Column()
-    nip!: string;
 
     @Column()
     totalPay!: number;
@@ -34,5 +33,8 @@ import {
   
     @UpdateDateColumn()
     updated_at!: string;
+
+    @OneToOne(() => Salaries, salaries => salaries.id) 
+    salaries!: Salaries;
 
   }

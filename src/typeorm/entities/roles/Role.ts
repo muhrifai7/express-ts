@@ -31,7 +31,7 @@ import {
     @UpdateDateColumn()
     updated_at!: string;
 
-    @OneToOne(() => User, user => user.role) // specify inverse side as a second parameter
+    @OneToMany(() => User, user => user.role) // specify inverse side as a second parameter
     user!: User;
     
     @OneToOne(() => Permission, (permission) => permission.role)
