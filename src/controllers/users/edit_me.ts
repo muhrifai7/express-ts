@@ -6,6 +6,8 @@ import { Profile } from '../../typeorm/entities/profile/Profile';
 import { CustomError } from '../../utils/response/custom-error/CustomError';
 import { customResult } from '../../utils/response/custom-success/customResult';
  
+// edit by token for user
+// only can change profile
 export const edit_me = async(req:Request,res:Response|any,next:NextFunction) => {
     const {id} = req.jwtPayload;
     const {body} = req

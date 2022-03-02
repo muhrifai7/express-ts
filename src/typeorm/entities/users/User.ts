@@ -18,7 +18,6 @@ import { Modules } from "../modules/Modules"
 import { EmailBlast } from '../emailBlast/EmailBlast';
 import { Attendance } from './../attendance/Attendance';
 import { Payroll } from './../payroll/Payroll';
-import { UserTax } from './../userTax/UserTax';
 import { RoleType, Language } from './userTypes';
 import { Salaries } from '../salaries/Salaries';
 
@@ -77,9 +76,6 @@ export class User {
 
   @OneToOne(() => Profile, profile => profile.user) 
   profile!: Profile;
-
-  @OneToOne(() => UserTax, userTax => userTax.id) 
-  userTax!: UserTax;
 
   @OneToOne(() => Salaries, salaries => salaries.user) 
   @JoinColumn()

@@ -1,21 +1,19 @@
 import { Request, Response, NextFunction } from 'express';
 import { getRepository } from 'typeorm';
 
-import { Salaries } from '../../typeorm/entities/salaries/Salaries';
+import { Department } from '../../typeorm/entities/department/Department';
 import { CustomError } from '../../utils/response/custom-error/CustomError';
 import { customResult } from '../../utils/response/custom-success/customResult';
 
 export const list = async (req: Request, res: Response, next: NextFunction) => {
   const {limit = 10,page = 1,keyword = ""} = req.query;
   const offset = limit as number * (page as number - 1) as number
-  const salariesRepository = getRepository(Salaries);
+  const departmentRepository = getRepository(Department);
   try {
-    const [result,count] = await salariesRepository.createQueryBuilder("salaries")
+    const [result,count] = await departmentRepository.createQueryBuilder("department")
     .offset(offset)
     .limit(limit as number)
-    .innerJoinAndSelect('salaries.userTax', 'userTax')
-    .innerJoinAndSelect('salaries.user', 'user')
-    .orderBy("salaries.created_at","DESC")
+    .orderBy("department.name","ASC")
     .getManyAndCount();
     if (!result) {
       const customError = new CustomError(404, 'General', `Attendances not found.`, ['Data not found.']);

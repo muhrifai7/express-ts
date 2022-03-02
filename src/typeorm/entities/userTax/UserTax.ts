@@ -6,19 +6,22 @@ import {
     UpdateDateColumn,
     OneToMany,
     OneToOne,
-    JoinColumn
+    JoinColumn,
+    Tree
 } from 'typeorm';
 
-import { User } from '../users/User';
-import { Permission } from '../permission/Permission';
+import { Salaries } from '../salaries/Salaries';
 
     @Entity()
     export class UserTax {
     @PrimaryGeneratedColumn()
     id!: string;
+    
+    @OneToOne(() => Salaries, salaries => salaries.userTax)
+    salaries!: Salaries;
 
     @Column({
-        unique: true,
+        nullable : true
     })
     name!: string;
     // persentase
@@ -28,7 +31,9 @@ import { Permission } from '../permission/Permission';
     @Column()
     bpjs!: string;
 
-    @Column()
+    @Column({
+        nullable : true
+    })
     description!: string;
         
     @CreateDateColumn()

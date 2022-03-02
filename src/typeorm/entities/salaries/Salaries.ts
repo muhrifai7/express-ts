@@ -5,10 +5,12 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne
+  OneToOne,
+  JoinColumn
 } from 'typeorm';
 
 import {User} from "../users/User"
+import { UserTax } from './../userTax/UserTax';
 
 @Entity()
 export class Salaries {
@@ -44,4 +46,8 @@ export class Salaries {
 
   @OneToOne(() => User, user => user.salaries)
   user!: User;
+
+  @OneToOne(() => UserTax, userTax => userTax.salaries) 
+  @JoinColumn()
+  userTax!: UserTax;
 }

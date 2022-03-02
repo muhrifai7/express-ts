@@ -6,14 +6,15 @@ import { Profile } from '../../typeorm/entities/profile/Profile';
 import { CustomError } from '../../utils/response/custom-error/CustomError';
 import { customResult } from '../../utils/response/custom-success/customResult';
  
+// edit by id
 export const edit = async(req:Request,res:Response|any,next:NextFunction) => {
     let { id } = req.params;
-    let { username,nip,roleName,isActive,dataProfile,basicSalary } = req.body;
+    let { username,nip,roleName,isActive,dataProfile,basicSalary,departmentId } = req.body;
     let { placeOfBirth,dateOfBirth,gender,religion,academic,title,address,city,country,postalCode,photo} = dataProfile;
     const userRepository = getRepository(User);
     const profileRepositoy = getRepository(Profile)
     try {
-        const user = await userRepository.findOne({where : {id}});
+        let user = await userRepository.findOne({where : {id}});
         if(!user){
             const customError = new CustomError(404, 'General', `User with id:${id} not found.`, ['User not found.']);
             return next(customError);
@@ -22,6 +23,9 @@ export const edit = async(req:Request,res:Response|any,next:NextFunction) => {
         if(!profile){
             const customError = new CustomError(404, 'General', `User with id:${id} not found.`, ['User not found.']);
             return next(customError);
+        }
+        if(departmentId !== ""){
+            user.department = departmentId
         }
         const newUser = {
             ...user,

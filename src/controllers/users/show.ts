@@ -12,7 +12,7 @@ export const show = async (req: Request, res: Response|any, next: NextFunction) 
   try {
     const user = await userRepository.findOne(id, {
       select : ["email","nip","role_name","username","isActive"],
-      relations : ["profile","role","department","module","emailBlast"]
+      relations : ["profile","role","department","module","emailBlast","salaries"]
     });
     // res.customSuccess(200, 'User found', user);
     return next(res.status(200).send((customResult(200,"success",user))));
