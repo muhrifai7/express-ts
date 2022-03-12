@@ -1,25 +1,25 @@
-import bcrypt from 'bcryptjs';
-import { 
-    Entity, 
-    PrimaryGeneratedColumn, 
-    Column, 
-    CreateDateColumn, 
-    UpdateDateColumn, 
-    OneToOne,
-    JoinColumn,
-    OneToMany,
-    ManyToOne
-   } from 'typeorm';
+import bcrypt from "bcryptjs";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToOne,
+  JoinColumn,
+  OneToMany,
+  ManyToOne,
+} from "typeorm";
 
-import { Role } from '../roles/Role';
+import { Role } from "../roles/Role";
 import { Profile } from "../profile/Profile";
-import { Department } from "../department/Department"
-import { Modules } from "../modules/Modules"
-import { EmailBlast } from '../emailBlast/EmailBlast';
-import { Attendance } from './../attendance/Attendance';
-import { Payroll } from './../payroll/Payroll';
-import { RoleType, Language } from './userTypes';
-import { Salaries } from '../salaries/Salaries';
+import { Department } from "../department/Department";
+import { Modules } from "../modules/Modules";
+import { EmailBlast } from "../emailBlast/EmailBlast";
+import { Attendance } from "./../attendance/Attendance";
+import { Payroll } from "./../payroll/Payroll";
+import { RoleType, Language } from "./userTypes";
+import { Salaries } from "../salaries/Salaries";
 
 @Entity()
 export class User {
@@ -32,7 +32,7 @@ export class User {
   email!: string;
 
   @Column({
-    nullable : true
+    nullable: true,
   })
   basicSalary!: string;
 
@@ -40,12 +40,12 @@ export class User {
   password!: string;
 
   @Column({
-    default : true as boolean
+    default: true as boolean,
   })
   isActive!: boolean;
 
   @Column({
-    nullable: true
+    nullable: true,
   })
   username!: string;
 
@@ -56,12 +56,12 @@ export class User {
   nip!: string;
 
   @Column({
-    default : "STANDARD" as RoleType
+    default: "STANDARD" as RoleType,
   })
   role_name!: string;
 
   @Column({
-    default: 'en-US' as Language,
+    default: "en-US" as Language,
     length: 15,
   })
   language!: string;
@@ -74,35 +74,31 @@ export class User {
   @UpdateDateColumn()
   updated_at!: Date;
 
-  @OneToOne(() => Profile, profile => profile.user) 
+  @OneToOne(() => Profile, (profile) => profile.user)
   profile!: Profile;
 
-  @OneToOne(() => Salaries, salaries => salaries.user) 
-  @JoinColumn()
+  @OneToOne(() => Salaries, (salaries) => salaries.user)
   salaries!: Salaries;
 
-  @Column({ type: "string", nullable: true})
+  @Column({ type: "string", nullable: true })
   role_id?: string;
-  @ManyToOne(() => Role, role => role.user) // specify inverse side as a second parameter
+  @ManyToOne(() => Role, (role) => role.user) // specify inverse side as a second parameter
   @JoinColumn({ name: "role_id" })
   role!: Role;
 
-  @OneToOne(() => Department, department => department.user)
-  @JoinColumn()
+  @OneToOne(() => Department, (department) => department.user)
   department!: Department;
 
-  @OneToMany(() => Modules, module => module.user)
-  @JoinColumn()
+  @OneToMany(() => Modules, (module) => module.user)
   module!: Modules[];
 
-  @OneToMany(() => Payroll, payroll => payroll.id)
-  @JoinColumn()
-  payroll!: Payroll[];
+  // @OneToMany(() => Payroll, (payroll) => payroll.id)
+  // payroll!: Payroll[];
 
-  @OneToMany(() => EmailBlast, email => email.user)
+  @OneToMany(() => EmailBlast, (email) => email.user)
   emailBlast!: EmailBlast[];
 
-  @OneToOne(() => Attendance, attendance => attendance.user) 
+  @OneToMany(() => Attendance, (attendance) => attendance.user)
   attendance!: Attendance;
 
   setLanguage(language: Language) {

@@ -1,4 +1,4 @@
-import { create } from '../../../controllers/users/create';
+import { create } from "../../../controllers/users/create";
 import {
   Entity,
   Column,
@@ -6,11 +6,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToOne,
-  JoinColumn
-} from 'typeorm';
+  JoinColumn,
+} from "typeorm";
 
-import {User} from "../users/User"
-import { UserTax } from './../userTax/UserTax';
+import { User } from "../users/User";
+import { UserTax } from "./../userTax/UserTax";
 
 @Entity()
 export class Salaries {
@@ -24,17 +24,17 @@ export class Salaries {
   allowance!: string;
 
   @Column({
-    nullable : true
+    nullable: true,
   })
   additional!: string;
 
   @Column({
-    nullable : true
+    nullable: true,
   })
   created_by!: string;
 
   @Column({
-    nullable : true
+    nullable: true,
   })
   updated_by!: string;
 
@@ -44,10 +44,13 @@ export class Salaries {
   @UpdateDateColumn()
   updated_at!: string;
 
-  @OneToOne(() => User, user => user.salaries)
+  @Column()
+  user_id!: number;
+  @OneToOne(() => User, (user) => user.salaries)
+  @JoinColumn({ name: "user_id" })
   user!: User;
 
-  @OneToOne(() => UserTax, userTax => userTax.salaries) 
+  @OneToOne(() => UserTax, (userTax) => userTax.salaries)
   @JoinColumn()
   userTax!: UserTax;
 }
