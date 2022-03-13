@@ -74,7 +74,10 @@ export class User {
   @UpdateDateColumn()
   updated_at!: Date;
 
-  @OneToOne(() => Profile, (profile) => profile.user)
+  @OneToOne(() => Profile, (profile) => profile.user, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   profile!: Profile;
 
   @OneToOne(() => Salaries, (salaries) => salaries.user)
