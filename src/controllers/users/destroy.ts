@@ -14,12 +14,6 @@ export const destroy = async (
   const userRepository = getRepository(User);
   const profileRepository = getRepository(Profile);
   try {
-    // delete relation
-    const profile = await profileRepository.findOne({
-      where: {
-        user_id: id,
-      },
-    });
     const user = await userRepository.findOne({
       where: { id },
       relations: ["profile"],
@@ -30,7 +24,8 @@ export const destroy = async (
       ]);
       return next(customError);
     }
-    await profileRepository.delete(id);
+
+    await profileRepository.delete({ user_id: user.profile.user_id });
     await userRepository.delete(id);
     // res.customSuccess(200, 'User successfully deleted.', { id: user.id, name: user.name, email: user.email });
     return res.status(200).json({

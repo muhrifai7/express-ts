@@ -89,7 +89,13 @@ export class User {
   @JoinColumn({ name: "role_id" })
   role!: Role;
 
-  @OneToOne(() => Department, (department) => department.user)
+  @Column({ type: "number", nullable: true })
+  department_id?: number;
+  @ManyToOne(() => Department, (department) => department.user, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
+  @JoinColumn({ name: "department_id" })
   department!: Department;
 
   @OneToMany(() => Modules, (module) => module.user)

@@ -4,7 +4,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
+  OneToMany,
   JoinColumn,
 } from "typeorm";
 import { User } from "../users/User";
@@ -26,9 +26,6 @@ export class Department {
   @UpdateDateColumn()
   updated_at!: string;
 
-  @Column({ nullable: true, default: null })
-  user_id!: number;
-  @OneToOne(() => User, (user) => user.department)
-  @JoinColumn({ name: "user_id" })
+  @OneToMany(() => User, (user) => user.department)
   user!: User;
 }
