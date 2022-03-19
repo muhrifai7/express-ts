@@ -49,8 +49,4 @@ export class Salaries {
   @OneToOne(() => User, (user) => user.salaries)
   @JoinColumn({ name: "user_id" })
   user!: User;
-
-  @OneToOne(() => UserTax, (userTax) => userTax.salaries)
-  @JoinColumn()
-  userTax!: UserTax;
 }

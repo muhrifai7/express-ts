@@ -20,6 +20,7 @@ import { Attendance } from "./../attendance/Attendance";
 import { Payroll } from "./../payroll/Payroll";
 import { RoleType, Language } from "./userTypes";
 import { Salaries } from "../salaries/Salaries";
+import { UserTax } from "../userTax/UserTax";
 
 @Entity()
 export class User {
@@ -82,6 +83,9 @@ export class User {
 
   @OneToOne(() => Salaries, (salaries) => salaries.user)
   salaries!: Salaries;
+
+  @OneToOne(() => UserTax, (userTax) => userTax.user)
+  userTax!: UserTax;
 
   @Column({ type: "string", nullable: true })
   role_id?: string;
