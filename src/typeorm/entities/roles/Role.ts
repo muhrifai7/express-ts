@@ -9,7 +9,7 @@ import {
   JoinColumn,
 } from "typeorm";
 
-import { User } from "../users/User";
+import { TU_USER } from "../users/User";
 import { Permission } from "../permission/Permission";
 
 @Entity()
@@ -31,8 +31,8 @@ export class Role {
   @UpdateDateColumn()
   updated_at!: string;
 
-  @OneToMany(() => User, (user) => user.role) // specify inverse side as a second parameter
-  user!: User;
+  @OneToMany(() => TU_USER, (user) => user.role) // specify inverse side as a second parameter
+  user!: TU_USER;
 
   @OneToOne(() => Permission, (permission) => permission.role)
   permission!: Permission;

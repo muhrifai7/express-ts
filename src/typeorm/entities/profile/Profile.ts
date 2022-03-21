@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
   JoinColumn,
 } from "typeorm";
-import { User } from "../users/User";
+import { TU_USER } from "../users/User";
 
 @Entity()
 export class Profile {
@@ -78,7 +78,7 @@ export class Profile {
 
   @Column()
   user_id!: number;
-  @OneToOne(() => User, (user) => user.profile)
+  @OneToOne(() => TU_USER, (user) => user.profile)
   @JoinColumn({ name: "user_id" })
-  user!: User;
+  user!: TU_USER;
 }

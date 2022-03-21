@@ -23,7 +23,7 @@ import { Salaries } from "../salaries/Salaries";
 import { UserTax } from "../userTax/UserTax";
 
 @Entity()
-export class User {
+export class TU_USER {
   @PrimaryGeneratedColumn()
   id!: number;
 

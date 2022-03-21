@@ -1,13 +1,13 @@
-import { create } from './../../../controllers/users/create';
+import { create } from "./../../../controllers/users/create";
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne
-} from 'typeorm';
-import {User} from "../users/User"
+  OneToOne,
+} from "typeorm";
+import { TU_USER } from "../users/User";
 
 @Entity()
 export class BankAccount {
@@ -34,5 +34,4 @@ export class BankAccount {
 
   @UpdateDateColumn()
   updated_at!: string;
-
 }

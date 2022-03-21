@@ -10,7 +10,7 @@ import {
 } from "typeorm";
 import moment from "moment";
 
-import { User } from "../users/User";
+import { TU_USER } from "../users/User";
 
 @Entity()
 export class Attendance {
@@ -59,7 +59,7 @@ export class Attendance {
 
   @Column()
   user_id!: string;
-  @ManyToOne(() => User, (user) => user.attendance)
+  @ManyToOne(() => TU_USER, (user) => user.attendance)
   @JoinColumn({ name: "user_id" })
-  user!: User;
+  user!: TU_USER;
 }

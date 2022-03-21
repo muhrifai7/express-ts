@@ -9,7 +9,7 @@ import {
   JoinColumn,
 } from "typeorm";
 
-import { User } from "../users/User";
+import { TU_USER } from "../users/User";
 import { UserTax } from "./../userTax/UserTax";
 
 @Entity()
@@ -17,10 +17,14 @@ export class Salaries {
   @PrimaryGeneratedColumn()
   id!: string;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   overtimePay!: number;
   // persentase
-  @Column()
+  @Column({
+    nullable: true,
+  })
   allowance!: string;
 
   @Column({
@@ -46,7 +50,7 @@ export class Salaries {
 
   @Column()
   user_id!: number;
-  @OneToOne(() => User, (user) => user.salaries)
+  @OneToOne(() => TU_USER, (user) => user.salaries)
   @JoinColumn({ name: "user_id" })
-  user!: User;
+  user!: TU_USER;
 }

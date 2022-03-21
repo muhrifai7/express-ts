@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { getRepository } from "typeorm";
 
-import { User } from "../../typeorm/entities/users/User";
+import { TU_USER } from "../../typeorm/entities/users/User";
 import { CustomError } from "../../utils/response/custom-error/CustomError";
 import { customResult } from "../../utils/response/custom-success/customResult";
 
@@ -12,7 +12,7 @@ export const show = async (
 ) => {
   const { id } = req.jwtPayload;
   console.log("result  =>", req.jwtPayload);
-  const userRepository = getRepository(User);
+  const userRepository = getRepository(TU_USER);
   try {
     const user = await userRepository.findOne(id, {
       select: [

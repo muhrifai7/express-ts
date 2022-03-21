@@ -1,4 +1,4 @@
-import { User } from "../../typeorm/entities/users/User";
+import { TU_USER } from "../../typeorm/entities/users/User";
 import { Profile } from "../../typeorm/entities/profile/Profile";
 import { Request, Response, NextFunction } from "express";
 import { getRepository } from "typeorm";
@@ -11,7 +11,7 @@ export const destroy = async (
   next: NextFunction
 ) => {
   const { id } = req.params;
-  const userRepository = getRepository(User);
+  const userRepository = getRepository(TU_USER);
   const profileRepository = getRepository(Profile);
   try {
     const user = await userRepository.findOne({

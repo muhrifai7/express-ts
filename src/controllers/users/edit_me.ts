@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { getRepository } from "typeorm";
 
-import { User } from "../../typeorm/entities/users/User";
+import { TU_USER } from "../../typeorm/entities/users/User";
 import { Profile } from "../../typeorm/entities/profile/Profile";
 import { CustomError } from "../../utils/response/custom-error/CustomError";
 import { customResult } from "../../utils/response/custom-success/customResult";
@@ -15,7 +15,7 @@ export const edit_me = async (
 ) => {
   const { id } = req.jwtPayload;
   const { body } = req;
-  const userRepository = getRepository(User);
+  const userRepository = getRepository(TU_USER);
   const profileRepositoy = getRepository(Profile);
   try {
     const user = await userRepository
@@ -37,11 +37,11 @@ export const edit_me = async (
       console.log(body, "bodybody");
       await userRepository.update(id, {
         ...(body.username && { username: body.username }),
-        ...(body.nip && { nip: body.nip }),
-        ...(body.isActive && { isActive: body.isActive ? true : false }),
+        ...(body.nip && !user.nip && { nip: body.nip }),
+        ...(body.isActive && { isActive: body.isActive }),
         ...(body.role_name && { role_name: body.roleName }),
         ...(body.basicSalary && { basicSalary: body.basicSalary }),
-        ...(body.department && { departmentId: body.departmentId }),
+        ...(body.department && { department_id: body.departmentId }),
       });
       const { dataProfile } = body;
       await profileRepositoy.update(

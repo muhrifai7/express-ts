@@ -7,7 +7,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from "typeorm";
-import { User } from "../users/User";
+import { TU_USER } from "../users/User";
 
 @Entity()
 export class Modules {
@@ -40,9 +40,9 @@ export class Modules {
 
   @Column()
   user_id!: number;
-  @ManyToOne(() => User, (user) => user.module)
+  @ManyToOne(() => TU_USER, (user) => user.module)
   @JoinColumn({ name: "user_id" })
-  user!: User;
+  user!: TU_USER;
 
   // @ManyToOne(() => User, user => user.module) // specify inverse side as a second parameter
   // user!: User;

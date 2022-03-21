@@ -10,7 +10,7 @@ import {
   Tree,
 } from "typeorm";
 
-import { User } from "../users/User";
+import { TU_USER } from "../users/User";
 
 @Entity()
 export class UserTax {
@@ -19,9 +19,9 @@ export class UserTax {
 
   @Column()
   user_id!: number;
-  @OneToOne(() => User, (user) => user.salaries)
+  @OneToOne(() => TU_USER, (user) => user.salaries)
   @JoinColumn({ name: "user_id" })
-  user!: User;
+  user!: TU_USER;
 
   @Column({
     nullable: true,
