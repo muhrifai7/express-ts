@@ -17,12 +17,12 @@ export const validatorEdit = async (
   username = !username ? "" : username;
   name = !name ? "" : name;
 
-  const user = await userRepository.findOne({ username });
-  if (user) {
-    errorsValidation.push({
-      username: `Username '${username}' already exists`,
-    });
-  }
+  // const user = await userRepository.findOne({ username });
+  // if (user) {
+  //   errorsValidation.push({
+  //     username: `Username '${username}' already exists`,
+  //   });
+  // }
 
   if (errorsValidation.length !== 0) {
     const customError = new CustomError(

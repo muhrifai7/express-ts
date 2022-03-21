@@ -1,5 +1,5 @@
 yarn typeorm migration:create -n =>
-yarn typeorm migration:run untuk run query di migrations alter atau create table 
+yarn typeorm migration:run untuk run query di migrations alter atau create table
 No changes in database schema were found - cannot generate a migration. To create a new empty migration use "typeorm migration:create" command
 
 create database postgres form shel
@@ -8,5 +8,51 @@ CREATE DATABASE databasename;
 
 data params camelcase
 
-pr 
-delete relaton table
+contoh data create user baru bukan signup di bedakan saja
+"values": {
+    "email": "admintesting1@gmail.com",
+    "basicSalary": null,
+    "isActive": true,
+    "username": null,
+    "nip": null,
+    "role_name": "MANAGER",
+    "profile": {
+      "id": 7,
+      "placeOfBirth": null,
+      "dateOfBirth": null,
+      "gender": "MALE",
+      "religion": null,
+      "academic": null,
+      "title": null,
+      "address": null,
+      "city": null,
+      "country": null,
+      "postalCode": null,
+      "photo": null,
+      "createdAt": "2022-03-21T10:00:42.821Z",
+      "updatedAt": "2022-03-21T10:00:42.821Z",
+      "user_id": 7
+    },
+    "role": {
+      "id": 1,
+      "name": "ADMINISTRATOR",
+      "description": "standart only previlages",
+      "created_at": "2022-03-21T04:38:57.828Z",
+      "updated_at": "2022-03-21T04:38:57.828Z"
+    },
+    "department": null,
+    "module": [],
+    "emailBlast": [],
+    "salaries": {
+      "id": 25,
+      "overtime": null,
+      "allowance": null,
+      "additional": null,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-03-21T10:00:42.826Z",
+      "updated_at": "2022-03-21T10:00:42.826Z",
+      "user_id": 7
+    },
+    "userTax": null
+  },

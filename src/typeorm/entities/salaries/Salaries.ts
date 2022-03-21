@@ -20,7 +20,7 @@ export class Salaries {
   @Column({
     nullable: true,
   })
-  overtimePay!: number;
+  overtime!: string;
   // persentase
   @Column({
     nullable: true,

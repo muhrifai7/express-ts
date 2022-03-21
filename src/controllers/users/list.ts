@@ -10,21 +10,30 @@ export const list = async (
   res: Response | any,
   next: NextFunction
 ) => {
+  const { limit = 10, page = 1, keyword = "" } = req.query;
+  const offset = ((limit as number) * ((page as number) - 1)) as number;
   const userRepository = getRepository(TU_USER);
   try {
-    const user = await userRepository.find({
-      select: ["email", "nip", "role_name", "username"],
-      relations: [
-        "profile",
-        "role",
-        "role.permission",
-        "department",
-        "module",
-        "emailBlast",
-      ],
-    });
+    const [result, count] = await userRepository
+      .createQueryBuilder("TU_USER")
+      .offset(offset)
+      .limit(limit as number)
+      .orderBy("TU_USER.username", "ASC")
+      .getManyAndCount();
+    if (!result) {
+      const customError = new CustomError(404, "General", `User not found.`, [
+        "Data not found.",
+      ]);
+      return next(customError);
+    }
+    const response = {
+      total_data: count,
+      page,
+      keyword,
+      data: result,
+    };
     // res.customSuccess(200, 'User found', user);
-    return next(res.status(200).send(customResult(200, "success", user)));
+    return next(res.status(200).send(customResult(200, "success", response)));
   } catch (err) {
     const customError = new CustomError(400, "Raw", "Error", null, err);
     return next(customError);

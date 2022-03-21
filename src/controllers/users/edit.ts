@@ -54,10 +54,9 @@ export const edit = async (
 
     // optional;
     const newSalaries = {
-      ...(salaries.overTimePay && { overtime_pay: salaries.overTimePay }),
+      ...(salaries.overtime && { overtime: salaries.overtime }),
       ...(salaries.allowance && { allowance: salaries.allowance }),
       ...(salaries.additional && { additional: salaries.additional }),
-      ...(id && { user_id: id }),
     };
     const newProfile = {
       ...(placeOfBirth && {
@@ -77,6 +76,18 @@ export const edit = async (
       ...(photo && { photo: photo }),
     };
     try {
+      await salariesRepository
+        .createQueryBuilder()
+        .update(Salaries)
+        .set(newSalaries)
+        .where("user_id = :user_id", { user_id: id as any })
+        .execute();
+      await profileRepositoy
+        .createQueryBuilder()
+        .update(Profile)
+        .set(newProfile)
+        .where("user_id = :user_id", { user_id: id as any })
+        .execute();
       await userRepository.update(id, {
         ...(username && { username: username }),
         ...(nip && !user.nip && { nip: nip }),
@@ -85,8 +96,7 @@ export const edit = async (
         ...(basicSalary && { basicSalary: basicSalary }),
         ...(departmentId && { department_id: departmentId }),
       });
-      await profileRepositoy.update(id, newProfile);
-      await salariesRepository.update(id, newSalaries);
+
       // res.customSuccess(200, 'User successfully saved.');
       return next(
         res.status(200).send(customResult(200, "User successfully updated"))

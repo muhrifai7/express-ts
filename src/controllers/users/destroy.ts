@@ -1,5 +1,6 @@
 import { TU_USER } from "../../typeorm/entities/users/User";
 import { Profile } from "../../typeorm/entities/profile/Profile";
+import { Salaries } from "../../typeorm/entities/salaries/Salaries";
 import { Request, Response, NextFunction } from "express";
 import { getRepository } from "typeorm";
 
@@ -13,6 +14,7 @@ export const destroy = async (
   const { id } = req.params;
   const userRepository = getRepository(TU_USER);
   const profileRepository = getRepository(Profile);
+  const salariesRepository = getRepository(Salaries);
   try {
     const user = await userRepository.findOne({
       where: { id },
@@ -25,8 +27,9 @@ export const destroy = async (
       return next(customError);
     }
 
-    await profileRepository.delete({ user_id: user.profile.user_id });
-    await userRepository.delete(id);
+    await salariesRepository.delete({ user_id: id as any });
+    await profileRepository.delete({ user_id: id as any });
+    await userRepository.delete({ id: id as any });
     // res.customSuccess(200, 'User successfully deleted.', { id: user.id, name: user.name, email: user.email });
     return res.status(200).json({
       status: 200,
