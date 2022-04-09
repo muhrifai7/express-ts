@@ -20,17 +20,91 @@ export class Salaries {
   @Column({
     nullable: true,
   })
-  overtime!: string;
-  // persentase
-  @Column({
-    nullable: true,
-  })
-  allowance!: string;
+  basicSalaries!: number;
 
   @Column({
     nullable: true,
   })
-  additional!: string;
+  totalSalaries!: number;
+
+  @Column({
+    nullable: true,
+  })
+  overtime!: number;
+
+  @Column({
+    nullable: true,
+  })
+  professionalAllowance!: number;
+
+  @Column({
+    nullable: true,
+  })
+  healthAllowance!: number;
+
+  // tunjangan makan
+  @Column({
+    nullable: true,
+  })
+  mealAllowance!: number;
+
+  // tunjangan jabaan
+  @Column({
+    nullable: true,
+  })
+  positionalAllowance!: number;
+
+  @Column({
+    nullable: true,
+  })
+  transportationAllowance!: number;
+
+  @Column({
+    nullable: true,
+  })
+  operatorAllowance!: number;
+
+  @Column({
+    nullable: true,
+  })
+  healthSubsidyBpjs!: number;
+
+  @Column({
+    nullable: true,
+  })
+  taktisAllowance!: number;
+
+  @Column({
+    nullable: true,
+  })
+  performanceAllowance!: number;
+
+  @Column({
+    nullable: true,
+  })
+  serviceAllowance!: number;
+
+  // potongan pph 21
+  @Column({
+    nullable: true,
+  })
+  pphDeduction!: number;
+  // subsidi pph 21
+  @Column({
+    nullable: true,
+  })
+  pphAllowance!: number;
+
+  @Column({
+    nullable: true,
+  })
+  bpjsAllowance!: number;
+
+  // potongan pinjaman
+  @Column({
+    nullable: true,
+  })
+  loanDeduction!: number;
 
   @Column({
     nullable: true,

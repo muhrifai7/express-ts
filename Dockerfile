@@ -1,15 +1,13 @@
-FROM node:16.13.1-alpine
+FROM node:11-alpine
 
-WORKDIR /app
+# RUN mkdir -p /usr/src/app
 
-COPY ./package.json .
-
-RUN yarn install && yarn cache clean --force
+WORKDIR /src/
 
 COPY . .
 
-RUN yarn run build
+RUN npm install
 
-EXPOSE 4040
+EXPOSE 3000
 
-CMD [ "yarn", "start" ]
+CMD ["npm", "run", "start"]

@@ -6,7 +6,7 @@ import { Profile } from "../../typeorm/entities/profile/Profile";
 import { CustomError } from "../../utils/response/custom-error/CustomError";
 import { customResult } from "../../utils/response/custom-success/customResult";
 import { Salaries } from "../../typeorm/entities/salaries/Salaries";
-
+import { Role } from "../../typeorm/entities/roles/Role";
 // edit by id
 export const edit = async (
   req: Request,
@@ -16,12 +16,12 @@ export const edit = async (
   let { id } = req.params;
   let {
     username,
-    nip,
+    nik,
     roleName,
     isActive,
     basicSalary,
     departmentId,
-    dataProfile,
+    profile,
     salaries,
   } = req.body;
   let {
@@ -36,10 +36,11 @@ export const edit = async (
     country,
     postalCode,
     photo,
-  } = dataProfile;
+  } = profile;
   const userRepository = getRepository(TU_USER);
   const profileRepositoy = getRepository(Profile);
   const salariesRepository = getRepository(Salaries);
+  const roleRepository = getRepository(Role);
   try {
     let user = await userRepository.findOne({ where: { id } });
     if (!user) {
@@ -52,11 +53,55 @@ export const edit = async (
       return next(customError);
     }
 
+    const getRole = await roleRepository.findOne({ where: { name: roleName } });
+    if (!getRole) {
+      const customError = new CustomError(
+        400,
+        "General",
+        "Role does not exists",
+        [`not exists`]
+      );
+      return next(customError);
+    }
+
     // optional;
     const newSalaries = {
+      basicSalaries: basicSalary,
+      ...(salaries.totalSalaries && { totalSalaries: salaries.totalSalaries }),
       ...(salaries.overtime && { overtime: salaries.overtime }),
-      ...(salaries.allowance && { allowance: salaries.allowance }),
-      ...(salaries.additional && { additional: salaries.additional }),
+      ...(salaries.professionalAllowance && {
+        professionalAllowance: salaries.professionalAllowance,
+      }),
+      ...(salaries.healthAllowance && {
+        healthAllowance: salaries.healthAllowance,
+      }),
+      ...(salaries.mealAllowance && { mealAllowance: salaries.mealAllowance }),
+      ...(salaries.positionalAllowance && {
+        positionalAllowance: salaries.positionalAllowance,
+      }),
+      ...(salaries.transportationAllowance && {
+        transportationAllowance: salaries.transportationAllowance,
+      }),
+      ...(salaries.operatorAllowance && {
+        operatorAllowance: salaries.operatorAllowance,
+      }),
+      ...(salaries.healthSubsidyBpjs && {
+        healthSubsidyBpjs: salaries.healthSubsidyBpjs,
+      }),
+      ...(salaries.taktisAllowance && {
+        taktisAllowance: salaries.taktisAllowance,
+      }),
+      ...(salaries.performanceAllowance && {
+        performanceAllowance: salaries.performanceAllowance,
+      }),
+      ...(salaries.serviceAllowance && {
+        serviceAllowance: salaries.serviceAllowance,
+      }),
+      ...(salaries.pphDeduction && { pphDeduction: salaries.pphDeduction }),
+      ...(salaries.pphAllowance && { pphAllowance: salaries.pphAllowance }),
+      ...(salaries.bpjsAllowance && { bpjsAllowance: salaries.bpjsAllowance }),
+      ...(salaries.loanDeduction && { loanDeduction: salaries.loanDeduction }),
+      ...(salaries.updated_by && { updated_by: salaries.updated_by }),
     };
     const newProfile = {
       ...(placeOfBirth && {
@@ -90,10 +135,11 @@ export const edit = async (
         .execute();
       await userRepository.update(id, {
         ...(username && { username: username }),
-        ...(nip && !user.nip && { nip: nip }),
+        ...(nik && !user.nik && { nik: nik }),
         ...(isActive && { isActive: isActive }),
         ...(roleName && { role_name: roleName }),
         ...(basicSalary && { basicSalary: basicSalary }),
+        ...(getRole && { role_id: getRole.id }),
         ...(departmentId && { department_id: departmentId }),
       });
 

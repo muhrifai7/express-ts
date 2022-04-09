@@ -21,6 +21,7 @@ import { Payroll } from "./../payroll/Payroll";
 import { RoleType, Language } from "./userTypes";
 import { Salaries } from "../salaries/Salaries";
 import { UserTax } from "../userTax/UserTax";
+import { Profesion } from "../profesion/Profesion";
 
 @Entity()
 export class TU_USER {
@@ -49,6 +50,21 @@ export class TU_USER {
     nullable: true,
   })
   username!: string;
+
+  @Column({
+    nullable: true,
+  })
+  account_number!: string;
+
+  @Column()
+  @UpdateDateColumn()
+  join_date!: Date;
+
+  @Column({
+    nullable: true,
+    unique: true,
+  })
+  nik!: string;
 
   @Column({
     nullable: true,
@@ -101,6 +117,14 @@ export class TU_USER {
   })
   @JoinColumn({ name: "department_id" })
   department!: Department;
+
+  @Column({ type: "number", nullable: true })
+  @ManyToOne(() => Profesion, (profesion) => profesion.user, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
+  @JoinColumn({ name: "profesion_id" })
+  profesion_id!: Profesion;
 
   @OneToMany(() => Modules, (module) => module.user)
   module!: Modules[];

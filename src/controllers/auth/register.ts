@@ -7,6 +7,7 @@ import { Role } from "../../typeorm/entities/roles/Role";
 import { Salaries } from "../../typeorm/entities/salaries/Salaries";
 import { CustomError } from "../../utils/response/custom-error/CustomError";
 
+// endpoint ini digunakan untuk proses register
 export const register = async (
   req: Request,
   res: Response,
@@ -17,7 +18,7 @@ export const register = async (
   const roleRepository = getRepository(Role);
   const salariesRepository = getRepository(Salaries);
 
-  const { email, password, role_name, departmentId } = req.body;
+  const { email, password, role_name = "STAFF", departmentId } = req.body;
   try {
     const user = await userRepository.findOne({ where: { email } });
     if (user) {

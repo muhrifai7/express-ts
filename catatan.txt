@@ -7,52 +7,22 @@ CREATE DATABASE databasename;
 \l get all table
 
 data params camelcase
+ gaji pokok
+ tunjangan profesi
+ tunjangan kesehatan
+ tunjangan makan
+  tunjangan jabatan
+ tunjangan transport
+ tunjangan operator khusus jabatan tertentu
+ subsidi bpjs kesehatan
+ tunjangan taktis untuk golongan manager only
+ tunjangan kinerja untuk golongan manager only
+ tunjangan pelayanan untuk golongan manager only
+ potongan pph 21 atau pajak -
+ subsidi pph 21
+ subsidi bpjs ketenagaerjaan +
+ potongan pinjaman -
 
-contoh data create user baru bukan signup di bedakan saja
-"values": {
-    "email": "admintesting1@gmail.com",
-    "basicSalary": null,
-    "isActive": true,
-    "username": null,
-    "nip": null,
-    "role_name": "MANAGER",
-    "profile": {
-      "id": 7,
-      "placeOfBirth": null,
-      "dateOfBirth": null,
-      "gender": "MALE",
-      "religion": null,
-      "academic": null,
-      "title": null,
-      "address": null,
-      "city": null,
-      "country": null,
-      "postalCode": null,
-      "photo": null,
-      "createdAt": "2022-03-21T10:00:42.821Z",
-      "updatedAt": "2022-03-21T10:00:42.821Z",
-      "user_id": 7
-    },
-    "role": {
-      "id": 1,
-      "name": "ADMINISTRATOR",
-      "description": "standart only previlages",
-      "created_at": "2022-03-21T04:38:57.828Z",
-      "updated_at": "2022-03-21T04:38:57.828Z"
-    },
-    "department": null,
-    "module": [],
-    "emailBlast": [],
-    "salaries": {
-      "id": 25,
-      "overtime": null,
-      "allowance": null,
-      "additional": null,
-      "created_by": null,
-      "updated_by": null,
-      "created_at": "2022-03-21T10:00:42.826Z",
-      "updated_at": "2022-03-21T10:00:42.826Z",
-      "user_id": 7
-    },
-    "userTax": null
-  },
+table profesi
+
+tambahan nik

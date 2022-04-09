@@ -14,14 +14,6 @@ export const show_by_id = async (
   const userRepository = getRepository(TU_USER);
   try {
     const user = await userRepository.findOne(id, {
-      select: [
-        "email",
-        "nip",
-        "role_name",
-        "username",
-        "isActive",
-        "basicSalary",
-      ],
       relations: [
         "profile",
         "role",
@@ -32,7 +24,15 @@ export const show_by_id = async (
         "userTax",
       ],
     });
-    // res.customSuccess(200, 'User found', user);
+    if (!user) {
+      const customError = new CustomError(
+        404,
+        "General",
+        `User with id:${id} not found.`,
+        ["User not found."]
+      );
+      return next(customError);
+    }
     return next(res.status(200).send(customResult(200, "success", user)));
   } catch (err) {
     const customError = new CustomError(400, "Raw", "Error", null, err);
