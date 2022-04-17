@@ -7,10 +7,11 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from "typeorm";
 
 import { TU_USER } from "../users/User";
-import { UserTax } from "./../userTax/UserTax";
+import { Payroll } from "./../payroll/Payroll";
 
 @Entity()
 export class Salaries {
@@ -127,4 +128,7 @@ export class Salaries {
   @OneToOne(() => TU_USER, (user) => user.salaries)
   @JoinColumn({ name: "user_id" })
   user!: TU_USER;
+
+  @OneToMany(() => Payroll, (payroll) => payroll.salaries)
+  payroll!: Payroll;
 }

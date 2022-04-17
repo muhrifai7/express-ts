@@ -1,40 +1,46 @@
-import { create } from '../../../controllers/users/create';
 import {
-    Entity,
-    Column,
-    PrimaryGeneratedColumn,
-    CreateDateColumn,
-    UpdateDateColumn,
-    OneToMany,
-    OneToOne
-  } from 'typeorm';
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
+} from "typeorm";
 
-  import { Salaries } from "../salaries/Salaries"
-  
-  @Entity()
-  export class Payroll {
-    @PrimaryGeneratedColumn()
-    id!: string;
+import { Salaries } from "../salaries/Salaries";
 
-    @Column()
-    totalPay!: number;
+@Entity()
+export class Payroll {
+  @PrimaryGeneratedColumn()
+  id!: string;
 
-    @Column()
-    paidDate!: string;
+  @Column()
+  totalPay!: number;
 
-    @Column()
-    created_by!: string;
+  @Column()
+  paidDate!: string;
 
-    @Column()
-    updated_by!: string;
-  
-    @CreateDateColumn()
-    created_at!: string;
-  
-    @UpdateDateColumn()
-    updated_at!: string;
+  @Column()
+  created_by!: string;
 
-    @OneToOne(() => Salaries, salaries => salaries.id) 
-    salaries!: Salaries;
+  @Column({
+    nullable: true,
+  })
+  updated_by!: string;
 
-  }
+  @CreateDateColumn()
+  created_at!: string;
+
+  @UpdateDateColumn()
+  updated_at!: string;
+
+  @Column({ type: "string", nullable: false })
+  salaries_id?: string;
+  @ManyToOne(() => Salaries, (salaries) => salaries.id, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
+  @JoinColumn({ name: "salaries_id" })
+  salaries!: Salaries;
+}
