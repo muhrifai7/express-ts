@@ -4,9 +4,9 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne
-} from 'typeorm';
-import {User} from "../users/User"
+  ManyToOne,
+} from "typeorm";
+import { TU_USER } from "../users/User";
 
 @Entity()
 export class EmailBlast {
@@ -28,6 +28,6 @@ export class EmailBlast {
   @UpdateDateColumn()
   updated_at!: string;
 
-  @ManyToOne(() => User, user => user.emailBlast) // specify inverse side as a second parameter
-  user!: User;
+  @ManyToOne(() => TU_USER, (user) => user.emailBlast) // specify inverse side as a second parameter
+  user!: TU_USER;
 }
