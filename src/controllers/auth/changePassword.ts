@@ -34,9 +34,12 @@ export const changePassword = async (
     user.hashPassword();
     userRepository.save(user);
 
-    res.customSuccess(200, "Password successfully changed.");
+    return res
+      .status(200)
+      .json({ status: 200, message: "Password successfully changed." });
   } catch (err) {
-    const customError = new CustomError(400, "Raw", "Error", null, err);
+    console.log(err, "errerrerrerr");
+    const customError = new CustomError(401, "Raw", "Error", null, err);
     return next(customError);
   }
 };
