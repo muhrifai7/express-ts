@@ -1,8 +1,9 @@
-import { ConnectionOptions } from 'typeorm';
-import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { ConnectionOptions } from "typeorm";
+import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 
 const config: ConnectionOptions = {
-  type: 'postgres',
+  type: "postgres",
+  url: process.env.DATABASE_URL,
   host: process.env.PG_HOST,
   port: Number(process.env.PG_PORT),
   username: process.env.POSTGRES_USER,
@@ -10,13 +11,15 @@ const config: ConnectionOptions = {
   database: process.env.POSTGRES_DB,
   synchronize: false,
   logging: false,
-  entities: ['src/typeorm/entities/**/*.ts'],
-  migrations: ['src/typeorm/migrations/**/*.ts'],
-  subscribers: ['src/typeorm/subscriber/**/*.ts'],
+  entities: ["disc/typeorm/entities/**/*.ts"],
+  // entities: ['src/typeorm/entities/**/*.ts'],
+  migrations: ["disc/typeorm/migrations/**/*.ts"],
+  // migrations: ['src/typeorm/migrations/**/*.ts'],
+  subscribers: ["src/typeorm/subscriber/**/*.ts"],
   cli: {
-    entitiesDir: 'src/typeorm/entities',
-    migrationsDir: 'src/typeorm/migrations',
-    subscribersDir: 'src/typeorm/subscriber',
+    entitiesDir: "src/typeorm/entities",
+    migrationsDir: "src/typeorm/migrations",
+    subscribersDir: "src/typeorm/subscriber",
   },
   namingStrategy: new SnakeNamingStrategy(),
 };
