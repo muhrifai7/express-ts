@@ -10,6 +10,9 @@ COPY . .
 
 RUN yarn run build
 
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
+RUN chmod +x /wait
+
 EXPOSE 4040
 
-CMD [ "yarn", "start" ]
+CMD [ "/wait","yarn", "start" ]

@@ -19,6 +19,7 @@ export const edit = async (
     nik,
     roleName,
     isActive,
+    accountNumber,
     basicSalary,
     departmentId,
     profile,
@@ -140,6 +141,7 @@ export const edit = async (
         ...(roleName && { role_name: roleName }),
         ...(basicSalary && { basicSalary: basicSalary }),
         ...(getRole && { role_id: getRole.id }),
+        ...(accountNumber && { account_number: accountNumber }),
         ...(departmentId && { department_id: departmentId }),
       });
 
