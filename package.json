@@ -11,6 +11,7 @@
     "dev": "nodemon --watch src -e ts --exec ts-node --files -r dotenv/config src/index.ts",
     "deploy": "git add . && git commit -m Heroku && git push heroku master",
     "build": "tsc --build",
+    "postinstall": "tsc",
     "start": "tsc && node dist/index.js",
     "prettier": "prettier --config .prettierrc --write './**/*.{ts,js,css,scss,json,md}'",
     "docker:dev": "docker-compose --file docker-compose.yml --file docker-compose.dev.yml --compatibility up --build",
