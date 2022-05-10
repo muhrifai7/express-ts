@@ -9,7 +9,7 @@
     "typeorm:migration:generate": "yarn typeorm -- migration:generate -n Migrations -p",
     "typeorm:migration:run": "yarn typeorm -- migration:run",
     "dev": "nodemon --watch src -e ts --exec ts-node --files -r dotenv/config src/index.ts",
-    "build": "rm -rf dist && ttsc && cp -R ./src/typeorm/migrations ./dist/dbb",
+    "build": "tsc --build",
     "start": "node dist/index.js",
     "prettier": "prettier --config .prettierrc --write './**/*.{ts,js,css,scss,json,md}'",
     "docker:dev": "docker-compose --file docker-compose.yml --file docker-compose.dev.yml --compatibility up --build",
