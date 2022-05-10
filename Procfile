@@ -1,3 +1,1 @@
-<!-- web : node src/index.ts -->
-
-worker: yarn start
+web : node dist/index.js

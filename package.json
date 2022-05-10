@@ -9,7 +9,7 @@
     "typeorm:migration:generate": "yarn typeorm -- migration:generate -n Migrations -p",
     "typeorm:migration:run": "yarn typeorm -- migration:run",
     "dev": "nodemon --watch src -e ts --exec ts-node --files -r dotenv/config src/index.ts",
-    "deploy": "git add . && git commit -m Heroku && git push heroku master",
+    "deploy": "git add . && git commit -m Heroku && git push heroku main",
     "build": "tsc --build",
     "postinstall": "tsc",
     "start": "tsc && node dist/index.js",
