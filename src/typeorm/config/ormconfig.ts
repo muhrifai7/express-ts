@@ -23,6 +23,7 @@ const config: ConnectionOptions = {
     subscribersDir: "src/typeorm/subscriber",
   },
   namingStrategy: new SnakeNamingStrategy(),
+  ssl: { rejectUnauthorized: false },
 };
 
 export = config;
