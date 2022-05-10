@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
     "target": "es5",
     "lib": ["es6"],
     "allowJs": true,
     "strict": true,
     "sourceMap": false,
     "outDir": "./dist",
-    "module": "commonjs",
     "skipLibCheck": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
@@ -16,16 +16,19 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "typeRoots" : ["./node_modules/@types", "./src/types"],
+    "typeRoots": ["./node_modules/@types", "./src/types"],
     "baseUrl": ".",
     "paths": {
       "*": ["node_modules", "src/*"]
     },
     "plugins": [
-      { "transform": "typescript-transform-paths", "exclude": [ "**/node_modules/**" ] }
+      {
+        "transform": "typescript-transform-paths",
+        "exclude": ["**/node_modules/**"]
+      }
     ]
   },
-  "files": [ "./src/types/express/index.d.ts" ],
+  "files": ["./src/types/express/index.d.ts"],
   "include": ["./src/**/*.tsx", "./src/**/*.ts"],
   "exclude": ["node_modules", "test/**/*.ts"]
 }

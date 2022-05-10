@@ -1,40 +1,38 @@
-import { create } from './../../../controllers/users/create';
 import {
-    Entity,
-    Column,
-    PrimaryGeneratedColumn,
-    CreateDateColumn,
-    UpdateDateColumn,
-    OneToOne
-  } from 'typeorm';
-  
-  @Entity()
-  export class Absence {
-    @PrimaryGeneratedColumn()
-    id!: string;
-  
-    @Column()
-    name!: string;
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToOne,
+} from "typeorm";
 
-    @Column()
-    description!: string;
+@Entity()
+export class Absence {
+  @PrimaryGeneratedColumn()
+  id!: string;
 
-    @Column()
-    from!: string;
+  @Column()
+  name!: string;
 
-    @Column()
-    to!: string;
+  @Column()
+  description!: string;
 
-    @Column()
-    createdBy!: string;
+  @Column()
+  from!: string;
 
-    @Column()
-    updatedBy!: string;
-  
-    @CreateDateColumn()
-    created_at!: string;
-  
-    @UpdateDateColumn()
-    updated_at!: string;
+  @Column()
+  to!: string;
 
-  }
+  @Column()
+  createdBy!: string;
+
+  @Column()
+  updatedBy!: string;
+
+  @CreateDateColumn()
+  created_at!: string;
+
+  @UpdateDateColumn()
+  updated_at!: string;
+}
