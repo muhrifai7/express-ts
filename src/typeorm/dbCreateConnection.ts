@@ -4,14 +4,9 @@ import config from "./config/ormconfig";
 
 export const dbCreateConnection = async (): Promise<Connection | null> => {
   try {
-    const config_env =
-      process.env.NODE_ENV == "production"
-        ? config.production
-        : config.development;
-    console.log(process.env.NODE_ENV);
-    const conn = await createConnection(config_env);
+    const conn = await createConnection(config);
     console.log(
-      `Database connection success. Connection name: '${conn.name}' Database: '${conn.options.database}' ${config_env}`
+      `Database connection success. Connection name: '${conn.name}' Database: '${conn.options.database}'`
     );
   } catch (err) {
     console.log(err);
