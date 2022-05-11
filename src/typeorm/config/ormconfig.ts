@@ -20,11 +20,8 @@ const config: any = {
     migrationsDir: __dirname + "/typeorm/migrations",
     subscribersDir: __dirname + "/typeorm/subscriber",
   },
-  dialectOptions: {
-    ssl: {
-      /* <----- Add SSL option */ require: true,
-      rejectUnauthorized: false,
-    },
+  ssl: {
+    rejectUnauthorized: false,
   },
   namingStrategy: new SnakeNamingStrategy(),
   // },
