@@ -18,9 +18,9 @@ const config: ConnectionOptions = {
   // subscribers: ["disc/typeorm/subscriber/**/*.js"],
   // subscribers: ["src/typeorm/subscriber/**/*.ts"],
   cli: {
-    entitiesDir: "src/typeorm/entities",
-    migrationsDir: "src/typeorm/migrations",
-    subscribersDir: "src/typeorm/subscriber",
+    entitiesDir: "dist/typeorm/entities",
+    migrationsDir: "dist/typeorm/migrations",
+    subscribersDir: "dist/typeorm/subscriber",
   },
   namingStrategy: new SnakeNamingStrategy(),
 };
