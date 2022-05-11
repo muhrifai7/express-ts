@@ -2,46 +2,51 @@ import { ConnectionOptions } from "typeorm";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 
 const config: any = {
-  production: {
-    type: "postgres",
-    url: process.env.DATABASE_URL,
-    synchronize: false,
-    logging: false,
-    entities: ["dist/typeorm/entities/**/*.js"],
-    migrations: ["dist/typeorm/migrations/**/*.js"],
-    // subscribers: ["disc/typeorm/subscriber/**/*.js"],
-    cli: {
-      entitiesDir: "dist/typeorm/entities",
-      migrationsDir: "dist/typeorm/migrations",
-      subscribersDir: "dist/typeorm/subscriber",
-    },
-    dialectOptions: {
-      ssl: {
-        /* <----- Add SSL option */ require: true,
-        rejectUnauthorized: false,
-      },
-    },
-    namingStrategy: new SnakeNamingStrategy(),
+  // production: {
+  type: "postgres",
+  url: process.env.DATABASE_URL,
+  // host: process.env.PG_HOST,
+  // port: Number(process.env.PG_PORT),
+  // username: process.env.POSTGRES_USER,
+  // password: process.env.POSTGRES_PASSWORD,
+  // database: process.env.POSTGRES_DB,
+  synchronize: false,
+  logging: false,
+  entities: [__dirname + "/typeorm/entities/**/*.js"],
+  migrations: [__dirname + "/typeorm/migrations/**/*.js"],
+  subscribers: [__dirname + "/typeorm/subscriber/**/*.js"],
+  cli: {
+    entitiesDir: __dirname + "/typeorm/entities",
+    migrationsDir: __dirname + "/typeorm/migrations",
+    subscribersDir: __dirname + "/typeorm/subscriber",
   },
-  development: {
-    type: "postgres",
-    host: process.env.PG_HOST,
-    port: Number(process.env.PG_PORT),
-    username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DB,
-    synchronize: false,
-    logging: false,
-    entities: ["src/typeorm/entities/**/*.ts"],
-    migrations: ["src/typeorm/migrations/**/*.ts"],
-    subscribers: ["src/typeorm/subscriber/**/*.ts"],
-    cli: {
-      entitiesDir: "src/typeorm/entities",
-      migrationsDir: "src/typeorm/migrations",
-      subscribersDir: "src/typeorm/subscriber",
+  dialectOptions: {
+    ssl: {
+      /* <----- Add SSL option */ require: true,
+      rejectUnauthorized: false,
     },
-    namingStrategy: new SnakeNamingStrategy(),
   },
+  namingStrategy: new SnakeNamingStrategy(),
+  // },
+  // development: {
+  // type: "postgres",
+  // host: process.env.PG_HOST,
+  // port: Number(process.env.PG_PORT),
+  // username: process.env.POSTGRES_USER,
+  // password: process.env.POSTGRES_PASSWORD,
+  // database: process.env.POSTGRES_DB,
+  // synchronize: false,
+  // logging: false,
+  // entities: ["src/typeorm/entities/**/*.ts"],
+  // migrations: ["src/typeorm/migrations/**/*.ts"],
+  // subscribers: ["src/typeorm/subscriber/**/*.ts"],
+  // cli: {
+  //   entitiesDir: "src/typeorm/entities",
+  //   migrationsDir: "src/typeorm/migrations",
+  //   subscribersDir: "src/typeorm/subscriber",
+  // },
+  // namingStrategy: new SnakeNamingStrategy(),
+  // },
 };
 
 export = config;
