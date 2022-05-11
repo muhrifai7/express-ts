@@ -4,13 +4,13 @@ import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 const config: any = {
   // production: {
   type: "postgres",
-  url: process.env.DATABASE_URL,
+  url: "postgres://kyclobynyyzmgh:5a218375fbaac9369ceb86dd68f61ce7602797a58a49ead859e9501df8585bea@ec2-3-211-6-217.compute-1.amazonaws.com:5432/db9alf28mtn50g",
   // host: process.env.PG_HOST,
   // port: Number(process.env.PG_PORT),
   // username: process.env.POSTGRES_USER,
   // password: process.env.POSTGRES_PASSWORD,
   // database: process.env.POSTGRES_DB,
-  synchronize: true,
+  synchronize: false,
   logging: false,
   entities: ["dist/typeorm/entities/**/*.js"],
   migrations: ["dist/typeorm/migrations/**/*.js"],
@@ -23,9 +23,9 @@ const config: any = {
   //   migrationsDir: __dirname + "/typeorm/migrations",
   //   subscribersDir: __dirname + "/typeorm/subscriber",
   // },
-  // ssl: {
-  //   rejectUnauthorized: false,
-  // },
+  ssl: {
+    rejectUnauthorized: false,
+  },
   namingStrategy: new SnakeNamingStrategy(),
   // },
   // development: {
