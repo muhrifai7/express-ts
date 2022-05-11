@@ -1,7 +1,7 @@
 import { ConnectionOptions } from "typeorm";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 
-const config: any = {
+const config = {
   production: {
     type: "postgres",
     url: process.env.DATABASE_URL,
@@ -44,4 +44,4 @@ const config: any = {
   },
 };
 
-export = config;
+module.exports = config;
