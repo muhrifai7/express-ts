@@ -10,7 +10,7 @@ import express from "express";
 import { errorHandler } from "./middleware/errorHandler";
 import { getLanguage } from "./middleware/getLanguage";
 import routes from "./routes";
-import { dbCreateConnection } from "./typeorm/dbCreateConnection";
+// import { dbCreateConnection } from "./typeorm/dbCreateConnection";
 
 export const app = express();
 app.use(cors());
@@ -27,6 +27,6 @@ app.listen(port, () => {
   console.log(`Server running  on port ${port}`);
 });
 
-(async () => {
-  await dbCreateConnection();
-})();
+// (async () => {
+//   await dbCreateConnection();
+// })();

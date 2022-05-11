@@ -4,7 +4,7 @@ import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 const config: any = {
   // production: {
   type: "postgres",
-  url: "postgres://kyclobynyyzmgh:5a218375fbaac9369ceb86dd68f61ce7602797a58a49ead859e9501df8585bea@ec2-3-211-6-217.compute-1.amazonaws.com:5432/db9alf28mtn50g",
+  url: process.env.DATABASE_URL,
   // host: process.env.PG_HOST,
   // port: Number(process.env.PG_PORT),
   // username: process.env.POSTGRES_USER,
