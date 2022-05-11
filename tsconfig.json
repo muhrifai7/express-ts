@@ -29,6 +29,7 @@
     ]
   },
   "files": ["./src/types/express/index.d.ts"],
+  // "include": ["src/index.ts"],
   "include": ["./src/**/*.tsx", "./src/**/*.ts"],
   "exclude": ["node_modules", "test/**/*.ts"]
 }
