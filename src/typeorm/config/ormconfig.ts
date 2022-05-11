@@ -10,7 +10,7 @@ const config: any = {
   // username: process.env.POSTGRES_USER,
   // password: process.env.POSTGRES_PASSWORD,
   // database: process.env.POSTGRES_DB,
-  synchronize: false,
+  synchronize: true,
   logging: false,
   entities: ["dist/typeorm/entities/**/*.js"],
   migrations: ["dist/typeorm/migrations/**/*.js"],
