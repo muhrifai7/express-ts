@@ -15,6 +15,12 @@ const config: any = {
       migrationsDir: "dist/typeorm/migrations",
       subscribersDir: "dist/typeorm/subscriber",
     },
+    dialectOptions: {
+      ssl: {
+        /* <----- Add SSL option */ require: true,
+        rejectUnauthorized: false,
+      },
+    },
     namingStrategy: new SnakeNamingStrategy(),
   },
   development: {
