@@ -27,6 +27,8 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
+const a = 10;
+
 (async () => {
   await dbCreateConnection();
 })();
