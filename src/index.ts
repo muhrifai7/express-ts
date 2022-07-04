@@ -10,7 +10,7 @@ import express from "express";
 import { errorHandler } from "./middleware/errorHandler";
 import { getLanguage } from "./middleware/getLanguage";
 import routes from "./routes";
-// import { dbCreateConnection } from "./typeorm/dbCreateConnection";
+import { dbCreateConnection } from "./typeorm/dbCreateConnection";
 
 export const app = express();
 app.use(cors());
@@ -24,9 +24,9 @@ app.use(errorHandler);
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
-  console.log(`Server running  on port ${port}`);
+  console.log(`Server runnsssing on port ${port}`);
 });
 
-// (async () => {
-//   await dbCreateConnection();
-// })();
+(async () => {
+  await dbCreateConnection();
+})();
